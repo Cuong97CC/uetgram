@@ -15,8 +15,8 @@
 					<input class="form-control" type="text" placeholder="Title" name="title" required></br>
 					</br>
 					<div class="form-group" style="text-align: center">                   
-						<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Create</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></span> Create</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
 					</div>
 				</form>
 			</div>

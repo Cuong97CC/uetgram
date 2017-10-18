@@ -36,7 +36,7 @@
             </li>
             @if (Auth::guest())
             <li class="nav-item"><a href="{{ route('login') }}">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
-            <li class="nav-item"><a href="{{ route('register') }}"> Register <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
+            <li class="nav-item"><a href="{{ route('register') }}"> Signup <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
             @else
             <li class="nav-item">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">

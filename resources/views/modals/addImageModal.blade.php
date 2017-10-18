@@ -23,8 +23,8 @@
 						<textarea class="form-control" rows="3" placeholder="Content" name="content"></textarea>
 					</div>
 					<div class="form-group" style="text-align: center">                   
-						<button id="add-img-bt" class="btn btn-success" disabled><span class="glyphicon glyphicon-arrow-up"></span> Post</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+						<button id="add-img-bt" class="btn btn-success" disabled><i class="fa fa-arrow-up" area-hidden="true"></i> Post</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
 					</div>
                 </form>
 			</div>

@@ -69,10 +69,25 @@ header nav.navbar ul li:hover {
   background-color: rgb(31, 31, 31);
 }
 
+button {
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
 button:hover>i.fa {
   -ms-transform: scale(1.2,1.2); /* IE 9 */
   -webkit-transform: scale(1.2,1.2); /* Safari */
   transform: scale(1.2,1.2); /* Standard syntax */
+}
+
+button>i.fa {
+  transition:transform 0.5s ease;
+}
+
+button:hover>i.fa-plus {
+  -ms-transform:rotate(90deg);
+  -webkit-transform:rotate(90deg);
+  transform:rotate(90deg);
 }
 
 ul li a:hover>i.fa {

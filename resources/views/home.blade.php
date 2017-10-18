@@ -30,7 +30,7 @@
 @stop
 
 @section('content')
-<section class="forms">
+<section class="forms welcome">
   <div class="container" id="container" style="min-height: 400px">
     @include('parts.welcome')
   </div>
