@@ -27,7 +27,7 @@
                   <div class="logo">
                     <h1>UETGram</h1>
                   </div>
-                  <p>Share your images to other people &amp; have fun!</p>
+                  <p>Share your photos to other people &amp; have fun!</p>
                 </div>
               </div>
             </div>

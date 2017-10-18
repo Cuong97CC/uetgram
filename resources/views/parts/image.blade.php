@@ -4,6 +4,6 @@
         <img class="small-img" alt="{{$i->title}}" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
     </a>
     @else
-    <img class="small-img" alt="{{$i->title}}" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
+    <img alt="{{$i->title}}" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
     @endif
 </div>

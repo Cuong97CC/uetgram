@@ -689,7 +689,7 @@ nav.navbar .search-box {
 
 nav.navbar .search-box .dismiss {
   position: absolute;
-  top: 50%;
+  top: 40%;
   right: 20px;
   transform: translateY(-50%);
   background: none;
