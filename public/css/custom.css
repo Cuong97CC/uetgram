@@ -99,6 +99,14 @@ ul li a:hover>i.fa-plus {
   z-index: 10000;
 }
 
+.modal-header {
+  background-color: #DDD;
+}
+
+.modal-footer {
+  background-color: #DDD;
+}
+
 .folder {
   margin-left: 20px;
   margin-bottom: 10px;
