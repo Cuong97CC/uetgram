@@ -9,10 +9,10 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 		    <div class="modal-body">
-				<p>Album <strong>{{$a->title}}</strong> is not empty. DELETE CANCELLED!</p></br>
+				<p>Album <big><strong>{{$a->title}}</strong></big> is not empty. <strong>DELETE CANCELLED!</strong></p></br>
 			</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times-circle" area-hidden="true"></i> Cancel</button>
             </div>
 		</div>
 	</div>

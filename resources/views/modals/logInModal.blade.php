@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal hide fade" id="logInModal" role="dialog" tabindex="-1" backdrop="static"> 
+<div class="modal fade" id="logInModal" role="dialog" backdrop="static"> 
 	<div class="modal-dialog">
 						
 		<!-- Modal content-->
@@ -55,13 +55,10 @@
                             <button type="submit" class="btn btn-primary">
                                 Login
                             </button>
-
-                            <a class="btn btn-link" href="{{ route('password.request') }}">
-                                Forgot Your Password?
-                            </a>
                         </div>
                     </div>
                 </form>
+                <a href="{{ route('password.request') }}" class="forgot-pass">Forgot Password?</a><small> Or do not have an account? </small><a href="{{ route('register') }}" class="signup">Signup</a>
 			</div>
 		</div>
 	</div>

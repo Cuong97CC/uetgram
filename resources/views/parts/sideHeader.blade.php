@@ -1,12 +1,12 @@
 <div class="sidebar-header d-flex align-items-center">
     <div class="avatar">
       @if(Auth::guest())
-      <img src="{{ URL::to('/storage/other/not-logged.jpg') }}" alt="avatar" class="img-fluid rounded-circle">
+      <img src="{{ URL::to('/img/not-logged.jpg') }}" alt="avatar" class="img-fluid rounded-circle">
       @else
       @if(Auth::user()->lv==1)
-      <img src="{{ URL::to('/storage/other/ad-avatar.png') }}" alt="avatar" class="img-fluid rounded-circle">
+      <img src="{{ URL::to('/img/ad-avatar.png') }}" alt="avatar" class="img-fluid rounded-circle">
       @else
-      <img src="{{ URL::to('/storage/other/avatar.png') }}" alt="avatar" class="img-fluid rounded-circle">
+      <img src="{{ URL::to('/img/avatar.png') }}" alt="avatar" class="img-fluid rounded-circle">
       @endif
       @endif
     </div>

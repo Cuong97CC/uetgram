@@ -1,47 +1,20 @@
-@extends('layouts.app')
-
-@section('title')
-	UETGram
-@stop
-
-@section('sidebar')
-<nav class="side-navbar">
-      @include('parts.sideHeader')
-      <!-- Sidebar Navigation Menus-->
-        <ul class="list-unstyled">
-          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Root</a></li>
-          <li><a href="#"><i class="fa fa-image" aria-hidden="true"></i>All Images</a></li>
-        </ul>
-    </nav>
-@stop
-
-@section('content')
-<div class="page login-page">
-      <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-          <div class="row">
-            <!-- Logo & Information Panel-->
-            <div class="col-lg-6">
-              <div class="info d-flex align-items-center">
-                <div class="content">
-                  <div class="logo">
-                    <h1>UETGram</h1>
-                  </div>
-                  <p>Share your photos to other people &amp; have fun!</p>
-                </div>
-              </div>
-            </div>
-            <!-- Form Panel    -->
-            <div class="col-lg-6 bg-white">
-              <div class="form d-flex align-items-center">
-                <div class="content">
-                  <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+<!-- Modal -->
+<div class="modal fade" id="signUpModal" role="dialog" backdrop="static"> 
+	<div class="modal-dialog">
+						
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Log In</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-6 control-label">Name</label>
-            
+
                             <div class="col-md-12">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
 
@@ -97,12 +70,7 @@
                             </div>
                         </div>
                     </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-@endsection
-
+			</div>
+		</div>
+	</div>
+</div>

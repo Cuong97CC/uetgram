@@ -16,7 +16,7 @@
 					</br>
 					<div class="form-group" style="text-align: center">                   
 						<button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></span> Create</button>
-						<button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times-circle" area-hidden="true"></i> Cancel</button>
 					</div>
 				</form>
 			</div>

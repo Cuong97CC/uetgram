@@ -9,7 +9,7 @@
 		@endif
 		<a href="{{ route('album.show',[$a->id]) }}">
         	<div class="folder-header">
-            	<img class="folder-img-top" style="margin-top:5px" src="{{ URL::to('/storage/other/album.png') }}" alt="#">
+            	<img class="folder-img-top" style="margin-top:5px" src="{{ URL::to('/img/album.png') }}" alt="#">
           	</div>
           	<div class="folder-section">
             	<h4>{{$a->title}}</h4>

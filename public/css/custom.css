@@ -122,6 +122,10 @@ ul li a:hover>i.fa-plus {
   background-color: #DDD;
 }
 
+#imageDetailModalDialog {
+  width: 100%;
+}
+
 .folder {
   margin-left: 20px;
   margin-bottom: 10px;

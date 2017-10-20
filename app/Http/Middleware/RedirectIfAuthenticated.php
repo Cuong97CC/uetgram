@@ -18,7 +18,7 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
-            return redirect('/home')->with(['type'=>'success','msg'=>"Log in success!"]); 
+            return redirect('/home');
         }
         return $next($request); 
     }
