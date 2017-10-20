@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use File;
+use Auth;
 
 class Album extends Model
 {
@@ -29,8 +30,34 @@ class Album extends Model
         return $this->belongsTo('App\User','idUser','id');
     }
 
+    public function hasUserImage() {
+        if($this->images()->count()>0) {
+            foreach($this->images as $i) {
+                if($i->idUser != Auth::user()->id){
+                    return true;
+                }
+            }
+        }
+        else {
+            foreach($this->albums as $a) {
+                if($a->hasUserImage()) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public function destroyA() {
-        if($this->albums()->count()==0 || $this->images()->count()==0) {
+        if(!$this->hasUserImage()) {
+            foreach($this->images as $i) {
+                if($i->idUser == Auth::user()->id) {
+                    $i->destroyI();
+                }
+            }
+            foreach($this->albums as $a) {
+                $a->destroyA();
+            }
             $this->delete();
         }
     }

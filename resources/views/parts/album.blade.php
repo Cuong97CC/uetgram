@@ -1,7 +1,7 @@
 <div class="col-sm-3 text-center">
     <div class="folder">
 		@if(!Auth::guest() && Auth::user()->lv==1)
-		@if($a->images()->count()>0 || $a->albums()->count()>0)
+		@if($a->hasUserImage())
 		<button class="btn btn-sm btn-danger pull-right" data-toggle="modal" data-target="#deleteAlbumFail{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
 		@else
 		<button class="btn btn-sm btn-danger pull-right" data-toggle="modal" data-target="#deleteAlbumModal{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
