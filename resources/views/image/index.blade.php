@@ -9,11 +9,11 @@
     @include('parts.sideHeader')
     <!-- Sidebar Navigation Menus-->
     <ul class="list-unstyled">
-		  <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Root</a></li>
-          <li class="active"><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>All Images</a></li>
+		  <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a></li>
+          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Thư mục gốc</a></li>
+          <li class="active"><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>Tất cả ảnh</a></li>
           @if(!Auth::guest())
-          <li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Your Images</a></li>
+          <li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Ảnh của bạn</a></li>
           @endif
     </ul>
 </nav>
@@ -33,7 +33,7 @@
 <section class="forms">
   <div class="container" id="container" style="min-height: 400px">
     @if($images->count()==0)
-		<p>Nothing to display!</p>
+		<p>Không có gì để hiển thị!</p>
 	  @else
 		<div class="row">
 		@foreach($images as $i)
