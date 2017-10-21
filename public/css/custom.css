@@ -154,3 +154,37 @@ ul li a:hover>i.fa-plus {
   -webkit-transform: scale(1.1,1.1); /* Safari */
   transform: scale(1.1,1.1); /* Standard syntax */
 }
+
+.pagination {
+  margin-top: 15px;
+}
+
+#carouselWelcome .carousel-item .info {
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-filter: blur(1px);
+  filter: blur(1px);
+}
+
+#carouselWelcome ol li {
+  background: rgba(106, 178, 238, 0.9);
+}
+
+#carouselWelcome ol li.active {
+  background: rgba(0, 140, 255, 0.9);
+}
+
+#carouselWelcome .carousel-caption {
+  background-color:rgba(230, 216, 216, 0.5);
+}
+
+#carouselWelcome .carousel-caption p {
+  font-weight: bold;
+  color: #3e21ff;
+}
+
+#carouselWelcome h1 {
+  color: #3e21ff;
+}
+
+

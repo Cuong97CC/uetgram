@@ -5,63 +5,47 @@
 @stop
 
 @section('sidebar')
-<div class="col-sm-2">
-<div class="nav-side-menu">
-    <div class="brand">Action</div> 
-        <div class="menu-list">  
-            <ul id="menu-content" class="menu-content collapse out">
-				<li data-toggle="collapse" data-target="#search" class="collapsed active"> 
-					<span class="glyphicon glyphicon-search"></span> Search
-				</li>
-                <ul class="sub-menu collapse" id="search">
-					<li>
-						<form>
-							<input type="text" class="form-control" name="search-content" placeholder="Anything...">
-						</form>
-					</li>
-                </ul>
-				<li onClick="window.location='{{ route('album.index') }}'"> 
-					<span class="glyphicon glyphicon-folder-open"></span> Root
-				</li>
-                <li class="sidebar-active"> 
-					<span class="glyphicon glyphicon-picture"></span> All Images 
-				</li>  
-				<li class="disabled">
-					<span class="glyphicon glyphicon-plus"></span> New Album
-                </li>  
-				<li class="disabled">
-					<span class="glyphicon glyphicon-cloud-upload"></span> Upload Image
-                </li>
-				<li onClick="window.history.back()">
-					<span class="glyphicon glyphicon-chevron-left"></span> Back
-                </li>
-            </ul>
+<nav class="side-navbar">
+    @include('parts.sideHeader')
+    <!-- Sidebar Navigation Menus-->
+    <ul class="list-unstyled">
+		  <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
+          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Root</a></li>
+          <li class="active"><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>All Images</a></li>
+          @if(!Auth::guest())
+          <li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Your Images</a></li>
+          @endif
+    </ul>
+</nav>
+@stop
+
+@section('header')
+<header class="page-header">
+  <div id="row row-flex">
+    <div class="col-xs-12 col-md-12">
+      <strong><label class="col-xs-12 col-md-10" style="font-size: 125%">Tất cả ảnh</label></strong>
     </div>
-</div>
-</div>
+  </div>
+</header>
 @stop
 
 @section('content')
-<div id="wrapper">
-    <div class="col-sm-10">
-        <div class="container-fluid">
-            <div class="row">
-                <ul class="breadcrumb">
-                    <li class="active">
-                        <big><strong>All Images</strong></big>
-                    </li>
-                </ul>
-            </div>
-			<div class="row">
-                @foreach ($images as $i)
-                    @include('parts.image')
-                @endforeach	
-            </div>
+<section class="forms">
+  <div class="container" id="container" style="min-height: 400px">
+    @if($images->count()==0)
+		<p>Nothing to display!</p>
+	  @else
+		<div class="row">
+		@foreach($images as $i)
+			@include('parts.image')
+		@endforeach
 		</div>
-        <div class="col-md-12" style="text-align:center">
-	        {!! $images->render() !!}
-        </div>
-    </div>
-</div>
+		<div class="col-md-12">
+            {!! $images->links('vendor.pagination.bootstrap-4'); !!}
+		</div>
+	  @endif
+  </div>
+</section>
 @stop
+
 

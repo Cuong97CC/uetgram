@@ -1,6 +1,6 @@
 <div class="col-md-2">
     @if(!Auth::guest())
-    <a href="#" data-toggle="modal" data-target="#imageDetailModal">
+    <a href="#">
         <img class="small-img" alt="{{$i->title}}" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
     </a>
     @else

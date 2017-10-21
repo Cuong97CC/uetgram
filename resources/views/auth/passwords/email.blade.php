@@ -22,7 +22,7 @@
         <div class="form-holder has-shadow">
           <div class="row">
             <!-- Logo & Information Panel-->
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <div class="info d-flex align-items-center">
                 <div class="content">
                   <div class="logo">
@@ -33,7 +33,7 @@
               </div>
             </div>
             <!-- Form Panel    -->
-            <div class="col-lg-6 bg-white">
+            <div class="col-lg-7 bg-white">
               <div class="form d-flex align-items-center">
                 <div class="content">
                   <div class="panel panel-default">
