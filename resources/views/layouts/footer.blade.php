@@ -1,4 +1,5 @@
 <footer class="main-footer">
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
@@ -8,5 +9,7 @@
               <p>Nhóm 3</p>
             </div>
         </div>
+
     </div>
+  </div>
 </footer>

@@ -9,6 +9,7 @@
     @include('parts.sideHeader')
     <!-- Sidebar Navigation Menus-->
     <ul class="list-unstyled">
+
 					@include('parts.basicSideBar')
           @if(!Auth::guest() && Auth::user()->lv > 0 && $images->total() == 0)
           <li><a href="#" data-toggle="modal" data-target="#newAlbumModal"><i class="fa fa-plus" aria-hidden="true"></i>Album mới</a></li>
@@ -16,6 +17,7 @@
           @if(!Auth::guest() && $subAlbums->total() == 0)
           <li><a href="#" data-toggle="modal" data-target="#addImageModal"><i class="fa fa-upload" aria-hidden="true"></i>Tải ảnh lên</a></li>
 		  		@endif
+
     </ul>
 </nav>	
 @if(!Auth::guest() && Auth::user()->lv > 0 && $images->total() == 0)

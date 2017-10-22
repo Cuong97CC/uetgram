@@ -217,6 +217,7 @@ ul li a:hover>i.fa-plus {
 #carouselWelcome h1 {
   color: #3e21ff;
 }
+<<<<<<< HEAD
 
 #searchForm input {
   background-color: #2f333e; 
@@ -256,3 +257,5 @@ section.forms {
     overflow: hidden;
   }
 }
+=======
+>>>>>>> Template image details

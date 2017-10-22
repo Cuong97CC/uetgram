@@ -1,4 +1,5 @@
 <div class="page login-page">
+
     <div class="container d-flex align-items-center">
         <div class="form-holder has-shadow">
           <div class="row">
@@ -11,7 +12,10 @@
                   </div>
                   <p>Chia sẻ ảnh của bạn với mọi người!</p>
                 </div>
+
+
               </div>
+              <p>Share your photos to other people &amp; have fun!</p>
             </div>
             <div class="col-lg-7" id="slide">
                   <div id="carouselWelcome" style="width:100%" class="carousel slide" data-ride="carousel">
@@ -45,10 +49,13 @@
                           <p>Hỗ trợ xem trước và tải lên nhiều ảnh cùng lúc</p>
                         </div>
                       </div>
+
                     </div>
                   </div>
-            </div>
-          </div>
+                </div>
+              </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
