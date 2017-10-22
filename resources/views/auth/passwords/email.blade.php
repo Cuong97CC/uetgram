@@ -9,9 +9,9 @@
       @include('parts.sideHeader')
       <!-- Sidebar Navigation Menus-->
         <ul class="list-unstyled">
-          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Home</a></li>
-          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Root</a></li>
-          <li><a href="#"><i class="fa fa-image" aria-hidden="true"></i>All Images</a></li>
+          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a></li>
+          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Thư mục gốc</a></li>
+          <li><a href="#"><i class="fa fa-image" aria-hidden="true"></i>Tất cả ảnh</a></li>
         </ul>
     </nav>
 @stop
@@ -28,7 +28,7 @@
                   <div class="logo">
                     <h1>UETGram</h1>
                   </div>
-                  <p>Share your photos to other people &amp; have fun!</p>
+                  <p>Chia sẻ ảnh của bạn với mọi người!</p>
                 </div>
               </div>
             </div>
@@ -37,7 +37,7 @@
               <div class="form d-flex align-items-center">
                 <div class="content">
                   <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+                <div class="panel-heading">Lấy lại mật khẩu</div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
@@ -49,7 +49,7 @@
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                            <label for="email" class="col-md-4 control-label">Địa chỉ email</label>
 
                             <div class="col-md-12">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
@@ -65,7 +65,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Send Password Reset Link
+                                    Gửi đường dẫn lấy lại mật khẩu
                                 </button>
                             </div>
                         </div>

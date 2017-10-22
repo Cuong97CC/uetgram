@@ -12,14 +12,14 @@
     </div>
         <div class="title">
         @if(Auth::guest())
-          <h1 class="h4">None</h1>
-          <p>None</p>
+          <h1 class="h4">???</h1>
+          <p>???</p>
         @else
           <h1 class="h4">{{Auth::user()->name}}</h1>
           @if(Auth::user()->lv > 0)
-          <p>Admin</p>
+          <p>Quản trị</p>
           @else
-          <p>User</p>
+          <p>Người dùng</p>
           @endif
         @endif
     </div>

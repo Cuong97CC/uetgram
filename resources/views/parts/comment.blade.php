@@ -1,9 +1,9 @@
 <form action="{{ route('comment.store',$i->id) }}" method="POST" class="form-horizontal" style="margin:5px">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
-        <label class="form-label" for="content">Comment:</label>
+        <label class="form-label" for="content">Bình luận:</label>
         <textarea class="form-control" row="3" placeholder="Enter your comment..." name="content" style="display:inline" required></textarea>
-        <button type="submit" class="btn btn-primary" style="float:right">Post</button>
+        <button type="submit" class="btn btn-primary" style="float:right">Đăng</button>
     </div>
 </form>
 </br>

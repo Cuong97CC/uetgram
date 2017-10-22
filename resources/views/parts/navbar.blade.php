@@ -4,7 +4,7 @@
       <div class="search-box">
         <button class="dismiss"><i class="fa fa-times" aria-hidden="true"></i></button>
         <form id="searchForm" action="#" role="search">
-          <input style="background-color: #2f333e; color: #FFF" type="search" placeholder="Search for albums, users, tags,..." class="form-control">
+          <input style="background-color: #2f333e; color: #FFF" type="search" placeholder="Tìm kiếm albums, người dùng, thẻ,..." class="form-control">
         </form>
       </div>
       <div class="container-fluid">
@@ -35,12 +35,12 @@
               <a id="search" href="#"><i class="fa fa-search" aria-hidden="true"></i></span></a>
             </li>
             @if (Auth::guest())
-            <li class="nav-item"><a href="{{ route('login') }}">Login <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
-            <li class="nav-item"><a href="{{ route('register') }}"> Signup <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
+            <li class="nav-item"><a href="{{ route('login') }}">Đăng nhập <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
+            <li class="nav-item"><a href="{{ route('register') }}"> Đăng ký <i class="fa fa-user-plus" aria-hidden="true"></i></a></li>
             @else
             <li class="nav-item">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                     Logout <i class="fa fa-sign-out" aria-hidden="true"></i>
+                     Đăng xuất <i class="fa fa-sign-out" aria-hidden="true"></i>
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

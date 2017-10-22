@@ -11,7 +11,7 @@
         <div class="menu-list">  
             <ul id="menu-content" class="menu-content collapse out">
 				<li data-toggle="collapse" data-target="#search" class="collapsed active"> 
-					<span class="glyphicon glyphicon-search"></span> Search
+					<span class="glyphicon glyphicon-search"></span> Tìm kiếm
 				</li>
                 <ul class="sub-menu collapse" id="search">
 					<li>
@@ -21,19 +21,19 @@
 					</li>
                 </ul>
 				<li onClick="window.location='{{ route('album.index') }}'"> 
-					<span class="glyphicon glyphicon-folder-open"></span> Root
+					<span class="glyphicon glyphicon-folder-open"></span> Thư mục gốc
 				</li>
                 <li onClick="window.location='{{ route('image.index') }}'"> 
-					<span class="glyphicon glyphicon-picture"></span> All Images 
+					<span class="glyphicon glyphicon-picture"></span> Tất cả ảnh 
 				</li>  
 				<li class="disabled">
-					<span class="glyphicon glyphicon-plus"></span> New Album
+					<span class="glyphicon glyphicon-plus"></span> Album mới
                 </li>  
 				<li class="disabled">
-					<span class="glyphicon glyphicon-cloud-upload"></span> Upload Image
+					<span class="glyphicon glyphicon-cloud-upload"></span> Tải ảnh lên
                 </li>
 				<li onClick="window.history.back()">
-					<span class="glyphicon glyphicon-chevron-left"></span> Back
+					<span class="glyphicon glyphicon-chevron-left"></span> Quay lại
                 </li>
             </ul>
     </div>

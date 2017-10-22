@@ -9,7 +9,7 @@
                   <div class="logo">
                     <h1>UETGram</h1>
                   </div>
-                  <p>Share your photos to other people &amp; have fun!</p>
+                  <p>Chia sẻ ảnh của bạn với mọi người!</p>
                 </div>
               </div>
             </div>

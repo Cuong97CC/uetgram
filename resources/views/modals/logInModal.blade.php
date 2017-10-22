@@ -5,7 +5,7 @@
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Log In</h4>
+				<h4 class="modal-title">Đăng nhập</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div class="modal-body">
@@ -13,7 +13,7 @@
                     {{ csrf_field() }}
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+                        <label for="email" class="col-md-4 control-label">Địa chỉ email</label>
 
                         <div class="col-md-12">
                             <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                        <label for="password" class="col-md-4 control-label">Password</label>
+                        <label for="password" class="col-md-4 control-label">Mật khẩu</label>
 
                         <div class="col-md-12">
                             <input id="password" type="password" class="form-control" name="password" required>
@@ -44,7 +44,7 @@
                         <div class="col-md-6 col-md-offset-4">
                             <div class="checkbox">
                                 <label>
-                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                    <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Ghi nhớ đăng nhập
                                 </label>
                             </div>
                         </div>
@@ -53,12 +53,12 @@
                     <div class="form-group">
                         <div class="col-md-8 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">
-                                Login
+                                Đăng nhập
                             </button>
                         </div>
                     </div>
                 </form>
-                <a href="{{ route('password.request') }}" class="forgot-pass">Forgot Password?</a><small> Or do not have an account? </small><a href="{{ route('register') }}" class="signup">Signup</a>
+                <a href="{{ route('password.request') }}" class="forgot-pass">Quên mật khẩu?</a><small> Không có tài khoản? </small><a href="{{ route('register') }}" class="signup">Đăng ký</a>
 			</div>
 		</div>
 	</div>
