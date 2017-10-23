@@ -11,9 +11,13 @@
     <ul class="list-unstyled">
 		  <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a></li>
           <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Thư mục gốc</a></li>
-          <li class="active"><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>Tất cả ảnh</a></li>
+          <li><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>Tất cả ảnh</a></li>
           @if(!Auth::guest())
+          @if(Auth::user()->id == $user->id)
+          <li class="active"><a href="{{ route('image.userimg',[Auth::user()->name]) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Ảnh của bạn</a></li>
+          @else
           <li><a href="{{ route('image.userimg',[Auth::user()->name]) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Ảnh của bạn</a></li>
+          @endif
           @endif
     </ul>
 </nav>
@@ -23,7 +27,7 @@
 <header class="page-header">
   <div id="row row-flex">
     <div class="col-xs-12 col-md-12">
-      <strong><label class="col-xs-12 col-md-10" style="font-size: 125%">Tất cả ảnh</label></strong>
+      <label class="col-xs-12 col-md-10" style="font-size: 125%">Ảnh của <big><strong>{{ $user->name }}</strong></big></label>
     </div>
   </div>
 </header>

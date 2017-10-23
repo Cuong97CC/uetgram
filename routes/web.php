@@ -73,6 +73,12 @@ Route::group(['prefix'=>'images'], function(){
         'uses' => 'ImagesController@destroy'
     ]);
 
+    //Xem toan bo anh cua mot user
+    Route::get('user/{idUser}', [
+        'as'   => 'image.userimg',
+        'uses' => 'ImagesController@userimg'
+    ]);
+
     Route::group(['prefix'=>'tags'], function(){
         //Them tag
         Route::post('{idImage}/addtag', [

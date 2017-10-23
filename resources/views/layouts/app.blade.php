@@ -22,7 +22,7 @@
 <body>
 @endif
     <div class="page form-page">
-        @include('parts.navbar')
+        @include('layouts.navbar')
         <div class="page-content d-flex align-items-stretch"> 
         @yield('sidebar')
             <div class="content-inner">
@@ -33,7 +33,7 @@
                     @endif
                 @yield('header')
                 @yield('content')
-                @include('parts.footer')
+                @include('layouts.footer')
             </div>
         </div>
     </div>

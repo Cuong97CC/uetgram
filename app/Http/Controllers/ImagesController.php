@@ -18,6 +18,12 @@ class ImagesController extends Controller
         return view('image.index',compact('images'));        
     }
 
+    public function userimg($user) {
+        $user = User::where('name', '=', $user)->first();
+        $images = $user->images()->paginate(18);
+        return view('image.user',compact('images','user'));        
+    }
+
     public function addimg($idAlbum,Request $request){
         $input=$request->all();
         $images=array();
