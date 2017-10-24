@@ -32,7 +32,7 @@
 @section('content')
 <section class="forms">
   <div class="container" id="container" style="min-height: 400px">
-    @if($images->count()==0)
+    @if($images->total()==0)
 		<p>Không có gì để hiển thị!</p>
 	  @else
 		<div class="row">
@@ -41,11 +41,29 @@
 		@endforeach
 		</div>
 		<div class="col-md-12">
-            {!! $images->links('vendor.pagination.bootstrap-4'); !!}
+          {!! $images->links('vendor.pagination.bootstrap-4'); !!}
 		</div>
 	  @endif
   </div>
 </section>
 @stop
+
+@if(Auth::guest() && $images->total()>0)
+@section('script')
+<script>
+  @foreach($images as $i)
+    fetch('{{ URL::to('/storage/upload/' . $i->img) }}')
+    .then(res => res.blob())
+    .then(blob => {
+      var reader{{$i->id}} = new FileReader();
+      reader{{$i->id}}.onload = function (e) {
+        $('#img{{$i->id}}').attr('src', e.target.result);
+      }
+      reader{{$i->id}}.readAsDataURL(blob);
+    });
+  @endforeach
+</script>
+@stop
+@endif
 
 

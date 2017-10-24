@@ -36,7 +36,7 @@
 @section('content')
 <section class="forms">
   <div class="container" id="container" style="min-height: 400px">
-    @if($albums->count()==0)
+    @if($albums->total()==0)
 			<p>Không có gì để hiển thị!</p>
 			@else
 			<div class="row">

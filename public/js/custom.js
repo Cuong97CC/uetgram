@@ -7,6 +7,7 @@ $(document).ready(function () {
   $('#search').on('click', function (e) {
       e.preventDefault();
       $('.search-box').fadeIn();
+      $('#searchContent').focus();
   });
   $('.dismiss').on('click', function () {
       $('.search-box').fadeOut();

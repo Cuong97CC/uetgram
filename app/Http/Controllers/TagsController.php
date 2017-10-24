@@ -40,10 +40,9 @@ class TagsController extends Controller
     }
 
     public function findimages($tag) {
-        $idUser = Auth::user()->id;
         $t = Tag::where('content', '=', $tag)->first();
         $images = $t->images()->paginate(18);
-        return view('image.tag',compact('images','tag','idUser'));        
+        return view('image.tag',compact('images','tag'));        
     }
 
     public function destroy($idImg,$idTag,Request $request) {

@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/search/{content}',[
+    'as'  => 'app.search',
+    'uses' => 'AppController@search'
+]);
+
 Route::group(['prefix'=>'albums'], function(){
     //Xem danh sach album root
     Route::get('/', [

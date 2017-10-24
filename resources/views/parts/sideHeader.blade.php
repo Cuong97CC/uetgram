@@ -12,7 +12,7 @@
     </div>
         <div class="title">
         @if(Auth::guest())
-          <h1 class="h4">???</h1>
+          <h1 class="h4">Ẩn danh</h1>
           <p>???</p>
         @else
           <h1 class="h4">{{Auth::user()->name}}</h1>

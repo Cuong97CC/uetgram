@@ -8,6 +8,23 @@ $('.popover-dismiss').popover({
     trigger: 'focus'
 })
 
+$('#searchForm').on('keyup keypress', function(e) {
+    var keyCode = e.keyCode || e.which;
+    if (keyCode === 13 && !$("#searchContent").val()) { 
+      e.preventDefault();
+      return false;
+    }
+});
+
+$("#searchContent").change(function(){
+    if($("#searchContent").val()) {
+        $('#searchForm').attr('action', '/search/'+$("#searchContent").val());
+    }
+    else {
+        $('#searchForm').attr('action', '#');
+    }
+})
+
 $("#img-form").change(function(){
     $("#image").empty();
     var typeValid = true;

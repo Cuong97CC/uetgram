@@ -3,8 +3,9 @@
       <!-- Search Box-->
       <div class="search-box">
         <button class="dismiss"><i class="fa fa-times" aria-hidden="true"></i></button>
-        <form id="searchForm" action="#" role="search">
-          <input style="background-color: #2f333e; color: #FFF" type="search" placeholder="Tìm kiếm albums, người dùng, thẻ,..." class="form-control">
+        <form id="searchForm" action="#" role="search" method="GET">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input id="searchContent" type="search" placeholder="Tìm kiếm albums, người dùng, tags,..." class="form-control">
         </form>
       </div>
       <div class="container-fluid">
@@ -53,3 +54,4 @@
       </div>
     </nav>
   </header>
+
