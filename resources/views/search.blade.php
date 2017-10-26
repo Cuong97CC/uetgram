@@ -18,7 +18,7 @@
 <header class="page-header">
   <div id="row row-flex">
     <div class="col-xs-12 col-md-12">
-      <strong><label class="col-xs-12 col-md-10" style="font-size: 125%"><big>{{$content}}</big>: {{$albums->total() + $users->total() + $images->total() + $tags->total()}} kết quả</label></strong>
+      <strong><label class="col-xs-12 col-md-10" style="font-size: 125%"><big>Tìm thấy {{$albums->total() + $users->total() + $images->total() + $tags->total()}} kết quả với từ khóa <big>"{{$content}}"</big></label></strong>
     </div>
   </div>
 </header>
@@ -142,10 +142,8 @@
 @stop
 
 @section('script')
-<script>
     @include('parts.imageScript')
     @if($images->total()>0)
     @include('parts.downloadScript')
     @endif
-</script>
 @stop

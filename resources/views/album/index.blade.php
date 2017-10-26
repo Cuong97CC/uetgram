@@ -49,3 +49,9 @@
 </section>
 @stop
 
+@section('script')
+  @include('parts.albumScript')
+@stop
+
+
+

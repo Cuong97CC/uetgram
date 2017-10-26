@@ -45,8 +45,6 @@
 @stop
 
 @section('script')
-<script>
   @include('parts.imageScript')
   @include('parts.downloadScript')
-</script>
 @stop

@@ -1,10 +1,10 @@
 <div class="col-sm-3 text-center">
-    <div class="folder">
+    <div class="folder" id="folder{{$a->id}}">
 		@if(!Auth::guest() && Auth::user()->lv==1)
 		@if($a->hasUserImage())
-		<button class="btn btn-sm btn-danger top-right" data-toggle="modal" data-target="#deleteAlbumFail{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+		<button id="del-album-bt{{$a->id}}" class="btn btn-sm btn-danger pull-right" data-toggle="modal" data-target="#deleteAlbumFail{{$a->id}}" style="display: none"><i class="fa fa-trash" aria-hidden="true"></i></button>
 		@else
-		<button class="btn btn-sm btn-danger top-right" data-toggle="modal" data-target="#deleteAlbumModal{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+		<button id="del-album-bt{{$a->id}}" class="btn btn-sm btn-danger pull-right" data-toggle="modal" data-target="#deleteAlbumModal{{$a->id}}" style="display:none"><i class="fa fa-trash" aria-hidden="true"></i></button>
 		@endif
 		@endif
 		<a href="{{ route('album.show',[$a->id]) }}">
@@ -17,6 +17,12 @@
 		</a>
     </div>   
 </div>
-@include('modals.deleteAlbumModal')
-@include('modals.deleteAlbumFail')
+
+@if(!Auth::guest() && Auth::user()->lv==1)
+	@if(!$a->hasUserImage())
+		@include('modals.deleteAlbumModal')
+	@else
+		@include('modals.deleteAlbumFail')
+	@endif
+@endif
 

@@ -45,7 +45,9 @@
     <!-- Scripts -->
     <script type="text/javascript" src="{{ URL::asset('js/custom.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/my.js') }}"></script>
+    <script>
     @yield('script') 
+    </script>
     
 </body>
 </html>

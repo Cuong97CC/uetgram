@@ -20,21 +20,16 @@ Route::get('/search/{content}',[
     'uses' => 'AppController@search'
 ]);
 
-Route::group(['prefix'=>'albums'], function(){
+Route::group(['prefix'=>'albums',], function(){
     //Xem danh sach album root
     Route::get('/', [
         'as'   => 'album.index',
         'uses' => 'AlbumsController@index'
     ]);
 
-    //Tao album moi
-    Route::get('{idAlbumf}/new', [
-        'as'   => 'album.new',
-        'uses' => 'AlbumsController@new'
-    ]);
-
     //Luu album moi
     Route::post('{idAlbumf}/store', [
+        'middleware'=>'adminLogin',
         'as'  => 'album.store',
         'uses'=> 'AlbumsController@store'
     ]);
@@ -47,6 +42,7 @@ Route::group(['prefix'=>'albums'], function(){
 
     //Xoa mot album
     Route::delete('delete/{idAlbum}', [
+        'middleware'=>'adminLogin',
         'as'   => 'album.destroy',
         'uses' => 'AlbumsController@destroy'
     ]);
@@ -62,18 +58,21 @@ Route::group(['prefix'=>'images'], function(){
 
     //Dang anh vao album
     Route::post('album{idAlbum}/addimg', [
+        'middleware'=>'userLogin',
         'as'  => 'image.addimg',
         'uses'=> 'ImagesController@addimg'
     ]);
 
     //Xem chi tiet mot anh
     Route::get('show/{idImg}', [
+        'middleware'=>'userLogin',
         'as'  => 'image.show',
         'uses'=> 'ImagesController@show'
     ]);
 
     //Xoa anh
     Route::delete('{idImage}', [
+        'middleware'=>'userLogin',
         'as'   => 'image.destroy',
         'uses' => 'ImagesController@destroy'
     ]);
@@ -84,7 +83,7 @@ Route::group(['prefix'=>'images'], function(){
         'uses' => 'ImagesController@userimg'
     ]);
 
-    Route::group(['prefix'=>'tags'], function(){
+    Route::group(['prefix'=>'tags','middleware'=>'userLogin'], function(){
         //Them tag
         Route::post('{idImage}/addtag', [
             'as'  => 'tag.store',
@@ -104,7 +103,7 @@ Route::group(['prefix'=>'images'], function(){
         ]);
     });
 
-    Route::group(['prefix'=>'comments'], function(){
+    Route::group(['prefix'=>'comments','middleware'=>'userLogin',], function(){
         //Gui comment
         Route::post('{idImage}/addcomment', [
             'as'  => 'comment.store',
