@@ -29,7 +29,7 @@
     </a>
     <a class="right carousel-control" href="#myCarousel" data-slide="next">
       <span class="glyphicon glyphicon-chevron-right"></span>
-      <span class="sr-only">Tiếp</span>
+      <span class="sr-only">Sau</span>
     </a>
   </div>
 </div>

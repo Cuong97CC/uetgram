@@ -2,9 +2,9 @@
     <div class="folder">
 		@if(!Auth::guest() && Auth::user()->lv==1)
 		@if($a->hasUserImage())
-		<button class="btn btn-sm btn-danger pull-right" data-toggle="modal" data-target="#deleteAlbumFail{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+		<button class="btn btn-sm btn-danger top-right" data-toggle="modal" data-target="#deleteAlbumFail{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
 		@else
-		<button class="btn btn-sm btn-danger pull-right" data-toggle="modal" data-target="#deleteAlbumModal{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
+		<button class="btn btn-sm btn-danger top-right" data-toggle="modal" data-target="#deleteAlbumModal{{$a->id}}"><i class="fa fa-trash" aria-hidden="true"></i></button>
 		@endif
 		@endif
 		<a href="{{ route('album.show',[$a->id]) }}">

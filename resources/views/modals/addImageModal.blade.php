@@ -11,7 +11,7 @@
 			<div class="modal-body">
 				<form action="{{ route('image.addimg',[$album->id]) }}" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<input type="file" accept="image/jpg, image/jpeg, image/jpe, image/png, image/bmp" name="file[]" id="img-form" multiple required>
+					<input type="file" accept="image/jpg, image/jpeg, image/jpe, image/png" name="file[]" id="img-form" multiple required>
 					<div id="image"></div>
 					</br>
 					<div class="form-group">
@@ -23,7 +23,7 @@
 						<textarea class="form-control" rows="3" placeholder="Nội dung" name="content"></textarea>
 					</div>
 					<div class="form-group" style="text-align: center">                   
-						<button id="add-img-bt" class="btn btn-success" disabled><i class="fa fa-arrow-up" area-hidden="true"></i> Đăng</button>
+						<button id="add-img-bt" class="btn btn-success"><i class="fa fa-arrow-up" area-hidden="true"></i> Đăng</button>
 						<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times-circle" area-hidden="true"></i> Hủy</button>
 					</div>
                 </form>

@@ -13,7 +13,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-7" id="slide">
                   <div id="carouselWelcome" style="width:100%" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                       <li data-target="#carouselWelcome" data-slide-to="0" class="active"></li>

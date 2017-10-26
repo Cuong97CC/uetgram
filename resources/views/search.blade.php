@@ -9,12 +9,7 @@
       @include('parts.sideHeader')
       <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
-          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a></li>
-          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Thư mục gốc</a></li>
-          <li><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>Tất cả ảnh</a></li>
-          @if(!Auth::guest())
-          <li><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Ảnh của bạn</a></li>
-          @endif
+            @include('parts.basicSideBar')
         </ul>
     </nav>
 @stop
@@ -35,7 +30,7 @@
     <div id="searchResult" role="tablist" aria-multiselectable="true">
         <div class="card">
             <div class="card-header" role="tab" id="headingOne">
-            <h5 class="mb-0">
+            <h5 class="mb-0 col-md-10 inline">
                 <a class="collapsed" data-toggle="collapse" data-parent="#searchResult" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                 Albums: {{$albums->total()}} kết quả
                 </a>
@@ -61,7 +56,7 @@
         </div>
         <div class="card">
             <div class="card-header" role="tab" id="headingTwo">
-            <h5 class="mb-0">
+            <h5 class="mb-0 col-md-10 inline">
                 <a class="collapsed" data-toggle="collapse" data-parent="#searchResult" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                 Người dùng: {{$users->total()}} kết quả
                 </a>
@@ -86,9 +81,9 @@
         </div>
         <div class="card">
             <div class="card-header" role="tab" id="headingThree">
-            <h5 class="mb-0">
+            <h5 class="mb-0 col-md-10 inline">
                 <a class="collapsed" data-toggle="collapse" data-parent="#searchResult" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Tags: {{$tags->total()}} kết quả
+                Nhãn: {{$tags->total()}} kết quả
                 </a>
             </h5>
             </div>
@@ -113,7 +108,7 @@
         </div>
         <div class="card">
             <div class="card-header" role="tab" id="headingFour">
-            <h5 class="mb-0">
+            <h5 class="mb-0 col-md-10 inline">
                 <a class="collapsed" data-toggle="collapse" data-parent="#searchResult" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                 Tiêu đề ảnh: {{$images->total()}} kết quả
                 </a>
@@ -124,6 +119,11 @@
                 @if($images->total()==0)
                 <p>Không có gì để hiển thị!</p>
                 @else
+                <div class="row">
+                    <div class="col-sm-12">
+                    @include('parts.mulControl')
+                    </div>
+                </div>
                 <div class="row">
                     @foreach($images as $i)
                         @include('parts.image')
@@ -143,37 +143,9 @@
 
 @section('script')
 <script>
-$(document).ready(function() {
-    var last=localStorage.getItem("id");
-    if (last!=null) {
-        //remove default collapse settings
-        $("#searchResult .collapse").removeClass('show');
-        //show the last visible group
-        $("#"+last).collapse("show");
-    }
-});
-
-$('#searchResult').on('shown.bs.collapse', function () {
-    var active=$("#searchResult .show").attr('id');
-    localStorage.setItem('id', active);
-})
-
-$('#searchResult').on('hidden.bs.collapse', function () {
-    localStorage.removeItem('id');
-})
-
-@if(Auth::guest() && $images->total()>0)
-  @foreach($images as $i)
-    fetch('{{ URL::to('/storage/upload/' . $i->img) }}')
-    .then(res => res.blob())
-    .then(blob => {
-      var reader{{$i->id}} = new FileReader();
-      reader{{$i->id}}.onload = function (e) {
-        $('#img{{$i->id}}').attr('src', e.target.result);
-      }
-      reader{{$i->id}}.readAsDataURL(blob);
-    });
-  @endforeach
-@endif
+    @include('parts.imageScript')
+    @if($images->total()>0)
+    @include('parts.downloadScript')
+    @endif
 </script>
 @stop

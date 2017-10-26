@@ -18,7 +18,7 @@ class TagsController extends Controller
         if(is_object($tag)) {
             foreach($tag->images as $i){
                 if($i->id == $idImg){
-                    return redirect()->back()->with(['type'=>'warning','msg'=>"Tag #$content is existed!"]);
+                    return redirect()->back()->with(['type'=>'warning','msg'=>"Nhãn #$content đã tồn tại trong ảnh!"]);
                 }
             }
             Tag_Image::create([

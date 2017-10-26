@@ -46,7 +46,7 @@ class ImagesController extends Controller
                     'content' => $content
                 ]);
             }
-            return redirect()->route('album.show',$idAlbum)->with(['type'=>'success','msg'=>"Success to post your image(s)!"]);
+            return redirect()->route('album.show',$idAlbum)->with(['type'=>'success','msg'=>"Ảnh của bạn đã được đăng thành công!"]);
         }
     }
 
@@ -62,6 +62,6 @@ class ImagesController extends Controller
         $idAlbum = $image->idAlbum;
         $image->destroyI();
 
-        return redirect()->route('album.show',$idAlbum)->with(['type'=>'danger','msg'=>"You've deleted one image!"]);       
+        return redirect()->route('album.show',$idAlbum)->with(['type'=>'danger','msg'=>"Đã xóa ảnh được chọn!"]);       
     }
 }

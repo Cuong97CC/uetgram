@@ -5,7 +5,7 @@
         <button class="dismiss"><i class="fa fa-times" aria-hidden="true"></i></button>
         <form id="searchForm" action="#" role="search" method="GET">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <input id="searchContent" type="search" placeholder="Tìm kiếm albums, người dùng, tags,..." class="form-control">
+          <input id="searchContent" type="search" placeholder="Tìm kiếm albums, người dùng, nhãn,..." class="form-control">
         </form>
       </div>
       <div class="container-fluid">

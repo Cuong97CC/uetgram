@@ -9,12 +9,7 @@
     @include('parts.sideHeader')
     <!-- Sidebar Navigation Menus-->
     <ul class="list-unstyled">
-		  <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a></li>
-          <li><a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Thư mục gốc</a></li>
-          <li class="active"><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>Tất cả ảnh</a></li>
-          @if(!Auth::guest())
-          <li><a href="{{ route('image.userimg',[Auth::user()->name]) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Ảnh của bạn</a></li>
-          @endif
+      @include('parts.basicSideBar')
     </ul>
 </nav>
 @stop
@@ -22,8 +17,9 @@
 @section('header')
 <header class="page-header">
   <div id="row row-flex">
-    <div class="col-xs-12 col-md-12">
-      <strong><label class="col-xs-12 col-md-10" style="font-size: 125%">Tất cả ảnh</label></strong>
+    <div class="col-sm-12">
+      <strong><label style="font-size: 125%">Tất cả ảnh</label></strong>
+      @include('parts.mulControl')
     </div>
   </div>
 </header>
@@ -48,22 +44,15 @@
 </section>
 @stop
 
-@if(Auth::guest() && $images->total()>0)
+
 @section('script')
 <script>
-  @foreach($images as $i)
-    fetch('{{ URL::to('/storage/upload/' . $i->img) }}')
-    .then(res => res.blob())
-    .then(blob => {
-      var reader{{$i->id}} = new FileReader();
-      reader{{$i->id}}.onload = function (e) {
-        $('#img{{$i->id}}').attr('src', e.target.result);
-      }
-      reader{{$i->id}}.readAsDataURL(blob);
-    });
-  @endforeach
+  @include('parts.imageScript')
+  @include('parts.downloadScript')
 </script>
 @stop
-@endif
+
+
+
 
 

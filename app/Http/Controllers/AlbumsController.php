@@ -23,7 +23,7 @@ class AlbumsController extends Controller
             'title' => 'unique:albums'
         ]);
         if($validate->fails()){
-            return redirect()->back()->with(['type'=>'danger','msg'=>'This title has been taken!']);      
+            return redirect()->back()->with(['type'=>'danger','msg'=>'Tiêu đề này đã tồn tại. Vui lòng chọn tiêu đề khác!']);      
         }
         else{
             $title = Input::get('title');
@@ -35,10 +35,10 @@ class AlbumsController extends Controller
                 'idAlbumf' => $idAlbumf
             ]);
             if($idAlbumf == 0) {
-                return redirect()->route('album.index')->with(['type'=>'success','msg'=>'Success to add new album!']);      
+                return redirect()->route('album.index')->with(['type'=>'success','msg'=>'Thêm album thành công!']);      
             }
             else {
-                return redirect()->route('album.show', [$idAlbumf])->with(['type'=>'success','msg'=>'Success to add new album!']);
+                return redirect()->route('album.show', [$idAlbumf])->with(['type'=>'success','msg'=>'Thêm album thành công!']);
             } 
         }
     }
@@ -58,10 +58,10 @@ class AlbumsController extends Controller
             $album->destroyA();
         }
         if($idAlbumf == 0) {
-            return redirect()->route('album.index')->with(['type'=>'danger','msg'=>"Deleted album $title!"]); 
+            return redirect()->route('album.index')->with(['type'=>'danger','msg'=>"Đã xóa album $title!"]); 
         }
         else {
-            return redirect()->route('album.show', [$idAlbumf])->with(['type'=>'danger','msg'=>"Deleted album $title!"]);
+            return redirect()->route('album.show', [$idAlbumf])->with(['type'=>'danger','msg'=>"Đã xóa album $title!"]);
         } 
     }
 }

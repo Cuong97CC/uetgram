@@ -9,25 +9,22 @@
       @include('parts.sideHeader')
       <!-- Sidebar Navigation Menus-->
         <ul class="list-unstyled">
-          <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i>Trang chủ</a></li>
-          <li class="active"> <a href="{{route('album.index')}}"><i class="fa fa-folder-open" aria-hidden="true"></i>Thư mục gốc</a></li>
-          <li><a href="{{ route('image.index') }}"><i class="fa fa-image" aria-hidden="true"></i>Tất cả ảnh</a></li>
-          @if(!Auth::guest())
-          <li><a href="{{ route('image.userimg',[Auth::user()->name]) }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Ảnh của bạn</a></li>
-          @endif
+          @include('parts.basicSideBar')
           @if(!Auth::guest() && Auth::user()->lv > 0)
           <li><a href="#" data-toggle="modal" data-target="#newAlbumModalRoot"><i class="fa fa-plus" aria-hidden="true"></i>Album mới</a></li>
           @endif
         </ul>
     </nav>
-    @include('modals.newAlbumModalRoot')
+    @if(!Auth::guest() && Auth::user()->lv > 0)
+      @include('modals.newAlbumModalRoot')
+    @endif
 @stop
 
 @section('header')
 <header class="page-header">
   <div id="row row-flex">
     <div class="col-xs-12 col-md-12">
-      <strong><label class="col-xs-12 col-md-10" style="font-size: 125%">Thư mục gốc</label></strong>
+      <strong><label style="font-size: 125%">Thư mục gốc</label></strong>
     </div>
   </div>
 </header>
