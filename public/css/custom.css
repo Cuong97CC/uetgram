@@ -63,6 +63,9 @@ nav.navbar .navbar-btn {
     transition: all 0.2s ease-in-out;
 }
 .folder .folder-section {
+  margin-top: 5px;
+}
+.folder .user {
   padding-top: 5px;
   margin-top: 5px;
   border: 1px solid rgb(56, 56, 56);

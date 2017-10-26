@@ -8,7 +8,7 @@
                 <img class="img-fluid rounded-circle" style="margin-top:5px" src="{{ URL::to('/img/avatar.png') }}" alt="avatar">
                 @endif
           	</div>
-          	<div class="folder-section">
+          	<div class="user folder-section">
             	<h3>{{$u->name}}</h3>
                 @if($u->lv > 0)
                 <p>Quản trị</p>
