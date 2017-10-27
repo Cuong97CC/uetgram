@@ -34,6 +34,13 @@ Route::group(['prefix'=>'albums',], function(){
         'uses'=> 'AlbumsController@store'
     ]);
 
+    //Đổi tên album
+    Route::put('{idAlbumf}/edit', [
+        'middleware'=>'adminLogin',
+        'as'  => 'album.edit',
+        'uses'=> 'AlbumsController@edit'
+    ]);
+
     //Xem mot album
     Route::get('{idAlbum}', [
         'as'   => 'album.show',

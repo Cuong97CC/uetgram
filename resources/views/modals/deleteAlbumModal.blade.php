@@ -9,7 +9,11 @@
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 		    <div class="modal-body">
+				@if(!$a->hasUserImage())
 				<p>Bạn có chắc chắn xóa album <big><strong>{{$a->title}}</strong></big>?</p></br>
+				@else
+				<p>Album <big><strong>{{$a->title}}</strong></big> chứa ảnh của người dùng khác. <strong>BẠN CHẮC CHẮN MUỐN DÙNG QUYỀN ADMIN ĐỂ XÓA?</strong></p></br>
+				@endif
 			</div>
 			<div class="modal-footer">
 				<form method="POST" class="form-inline" action="{{ route('album.destroy',[$a->id]) }}">

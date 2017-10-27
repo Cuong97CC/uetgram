@@ -1,6 +1,10 @@
 $("div.alert").delay(3000).slideUp();
 
 $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function () {
     $('[data-toggle="popover"]').popover()
 })
 

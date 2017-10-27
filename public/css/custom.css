@@ -59,11 +59,8 @@ nav.navbar .navbar-btn {
 .folder .folder-header img{
   max-height: 35vh;
 }
-.folder .sb-preview-img {
-    transition: all 0.2s ease-in-out;
-}
-.folder .folder-section {
-  margin-top: 5px;
+.folder .folder-section h4{
+  margin-top: 10px;
 }
 .folder .user {
   padding-top: 5px;
@@ -72,6 +69,10 @@ nav.navbar .navbar-btn {
   border-radius: 4px;
   background-color: rgb(240, 240, 240);
   max-height: 15vh;
+  width: 100%;
+}
+.folder .folder-section {
+  width: 100%;
 }
 .folder-img-top {
     width: 100%;

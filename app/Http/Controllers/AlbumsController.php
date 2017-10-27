@@ -43,6 +43,28 @@ class AlbumsController extends Controller
         }
     }
 
+    public function edit($idAlbum,Request $request) {
+        $validate= Validator::make($request->all(),
+        [
+            'title' => 'unique:albums'
+        ]);
+        if($validate->fails()){
+            return redirect()->back()->with(['type'=>'danger','msg'=>'Tiêu đề này đã tồn tại. Vui lòng chọn tiêu đề khác!']);      
+        }
+        else{
+            $title = Input::get('title');
+            $album = Album::find($idAlbum);
+            $album->title = $title;
+            $album->save();
+            if($album->idAlbumf == 0) {
+                return redirect()->route('album.index')->with(['type'=>'success','msg'=>'Đổi tên album thành công!']);      
+            }
+            else {
+                return redirect()->route('album.show', [$album->idAlbumf])->with(['type'=>'success','msg'=>'TĐổi tên album thành công!']);
+            } 
+        }
+    }
+
     public function show($idAlbum) {
         $album = Album::find($idAlbum);
         $subAlbums = $album->albums()->paginate(8);

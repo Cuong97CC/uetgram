@@ -32,7 +32,7 @@
             <div class="content-inner">
                     @if(Session::has('msg'))
                     <div id="msg" class="alert alert-{{ Session::get('type') }} alert-dismissable" style="text-align:center">
-                        <strong>Notification: </strong>{{ Session::get('msg') }}
+                        <strong>Thông báo: </strong>{{ Session::get('msg') }}
                     </div>
                     @endif
                 @yield('header')
