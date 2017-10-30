@@ -8,19 +8,19 @@
 <div id="wrapper">
 <div class="container-fluid">
 <div style="text-align:left">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-    @foreach($images as $i)
-        @if($i->id == $image->id)
-        <div class="item active">
-        @else
-        <div class="item">
-        @endif
-        @include('parts.details')
-        </div>
-    @endforeach
-    </div>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+  @foreach($images as $i)
+      @if($i->id == $image->id)
+      <div class="item active">
+      @else
+      <div class="item">
+      @endif
+      @include('parts.details')
+      </div>
+  @endforeach
+  </div>
 
     <!-- Left and right controls -->
     <a class="left carousel-control" href="#myCarousel" data-slide="prev">

@@ -8,6 +8,7 @@
       @else
       <img src="{{ URL::to('/img/avatar.png') }}" alt="avatar" class="img-fluid rounded-circle">
       @endif
+
       @endif
     </div>
         <div class="title">
