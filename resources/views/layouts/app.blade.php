@@ -19,6 +19,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
     <script src="{{ URL::asset('js/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ URL::asset('libs/bootstrap-4.0.0-alpha.6/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/before.js') }}"></script>
 </head>
 @if(Auth::guest())
 <body onContextMenu="return false">
@@ -43,8 +44,7 @@
     </div>
 
     <!-- Scripts -->
-    <script type="text/javascript" src="{{ URL::asset('js/custom.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/my.js') }}"></script>
+    <script type="text/javascript" src="{{ URL::asset('js/after.js') }}"></script>
     <script>
     @yield('script') 
     </script>

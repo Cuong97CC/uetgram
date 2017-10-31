@@ -27,7 +27,7 @@
 @stop
 
 @section('header')
-<header class="page-header">
+<header class="page-header up">
   <div id="row row-flex">
     <div class="col-xs-12 col-md-12">
 			<label class="col-xs-6 col-md-6 col-sm-6" style="font-size: 125%">
@@ -40,16 +40,14 @@
 			@endif
 			@endforeach
 			</label>
-			@if($images->total()>0)
 				@include('parts.mulControl')
-			@endif
     </div>
   </div>
 </header>
 @stop
 
 @section('content')
-<section class="forms">
+<section class="forms up">
   <div class="container" id="container" style="min-height: 400px">
     @if($subAlbums->total()==0 && $images->total()==0)
 		<p>Không có gì để hiển thị!</p>
@@ -65,7 +63,7 @@
 			</div>
 		@elseif($images->total()>0)
 			<div class="row">
-			@foreach($images as $i)
+			@foreach($images as $k=>$i)
 				@include('parts.image')
 			@endforeach
 			</div>
@@ -74,11 +72,13 @@
 			</div>
 		@endif
 		@endif
-  </div>
+	</div>
+	@include('modals.deleteMulModal')
 </section>
+@include('parts.imageDetail')
 @stop
 
 @section('script')
-	@include('parts.imageScript')
-	@include('parts.downloadScript')
+	@include('parts.albumScript')
+	@include('parts.mulControlScript')
 @stop

@@ -11,7 +11,7 @@
 			<div class="modal-body">
 				<form action="{{ route('image.addimg',[$album->id]) }}" method="POST" enctype="multipart/form-data">
 					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<input type="file" accept="image/jpg, image/jpeg, image/jpe, image/png" name="file[]" id="img-form" multiple required>
+					<input type="file" accept="image/jpg, image/jpeg, image/jpe, image/png" name="file[]" id="img-form" multiple required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')">
 					<div id="image"></div>
 					</br>
 					<div class="form-group">

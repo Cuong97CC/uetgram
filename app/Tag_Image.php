@@ -10,7 +10,7 @@ class Tag_Image extends Model
     protected $table = "tags_images";
 
     protected $fillable = [
-        'idTag','idImg',
+        'idTag','idImg','idUser',
     ];
 
     public function tag(){

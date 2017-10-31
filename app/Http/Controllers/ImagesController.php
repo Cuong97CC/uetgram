@@ -50,18 +50,68 @@ class ImagesController extends Controller
         }
     }
 
-    public function show($idImg) {
-        $image = Image::find($idImg);
-        $idUser = Auth::user()->id;
-        $images = Image::all();
-        return view('image.show',compact('image','images','idUser'));        
+    public function describe($id,Request $request) {
+        if($request->ajax()) {
+            $idImg = $request->idImg;
+            $idCmt = $request->idCmt;
+            $img = Image::find($idImg);
+            $cmt = Comment::find($idCmt);
+            $img->content = $cmt->content;
+            $img->save();
+            return $img->content;
+        }
+    }
+
+    public function edit($id,Request $request) {
+        if($request->ajax()) {
+            $idImg = $request->idImg;
+            $img = Image::find($idImg);
+            if($request->title) {
+                $img->title = $request->title;
+            }
+            if($request->content) {
+                $img->content = $request->content;
+            }
+            $img->save();
+            return $img->toJson();
+        }
+    }
+
+    public function empty($id,Request $request) {
+        if($request->ajax()) {
+            $idImg = $request->idImg;
+            $img = Image::find($idImg);
+            if($request->val) {
+                if($request->val == 'title') {
+                    $img->title = null;
+                }
+                if($request->val == 'content') {
+                    $img->content = null;
+                }
+            }
+            $img->save();
+            return $img->toJson();
+        }
     }
 
     public function destroy($id) {
-        $image = Image::find($id);
-        $idAlbum = $image->idAlbum;
-        $image->destroyI();
-
-        return redirect()->route('album.show',$idAlbum)->with(['type'=>'danger','msg'=>"Đã xóa ảnh được chọn!"]);       
+        $checkUser = true;
+        foreach(Image::find(explode(',', $id)) as $image) {
+            if(Auth::user()->lv != 1 && Auth::user()->id != $image->idUser) {
+                $checkUser = false;
+                break;
+            }
+        }
+        if($checkUser) {
+            foreach(Image::find(explode(',', $id)) as $image) {
+                if(Auth::user()->lv == 1 || Auth::user()->id == $image->idUser) {
+                    $image->destroyI();
+                }
+            }
+            return redirect()->back()->with(['type'=>'danger','msg'=>"Đã xóa (những) ảnh được chọn!"]);    
+        }   
+        else {
+            return redirect()->back()->with(['type'=>'warning','msg'=>"Bạn đang cố xóa ảnh của người khác!"]);    
+        }
     }
 }

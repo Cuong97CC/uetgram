@@ -43,7 +43,7 @@
                             <label for="name" class="col-md-6 control-label">Tên</label>
             
                             <div class="col-md-12">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">
@@ -57,7 +57,7 @@
                             <label for="email" class="col-md-6 control-label">Địa chỉ email</label>
 
                             <div class="col-md-12">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -71,7 +71,7 @@
                             <label for="password" class="col-md-6 control-label">Mật khẩu</label>
 
                             <div class="col-md-12">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -85,7 +85,7 @@
                             <label for="password-confirm" class="col-md-6 control-label">Xác nhận mật khẩu</label>
 
                             <div class="col-md-12">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')">
                             </div>
                         </div>
 

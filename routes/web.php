@@ -35,7 +35,7 @@ Route::group(['prefix'=>'albums',], function(){
     ]);
 
     //Đổi tên album
-    Route::put('{idAlbumf}/edit', [
+    Route::put('{idAlbum}/edit', [
         'middleware'=>'adminLogin',
         'as'  => 'album.edit',
         'uses'=> 'AlbumsController@edit'
@@ -70,13 +70,6 @@ Route::group(['prefix'=>'images'], function(){
         'uses'=> 'ImagesController@addimg'
     ]);
 
-    //Xem chi tiet mot anh
-    Route::get('show/{idImg}', [
-        'middleware'=>'userLogin',
-        'as'  => 'image.show',
-        'uses'=> 'ImagesController@show'
-    ]);
-
     //Xoa anh
     Route::delete('{idImage}', [
         'middleware'=>'userLogin',
@@ -85,9 +78,30 @@ Route::group(['prefix'=>'images'], function(){
     ]);
 
     //Xem toan bo anh cua mot user
-    Route::get('user/{idUser}', [
+    Route::get('user/{User}', [
         'as'   => 'image.userimg',
         'uses' => 'ImagesController@userimg'
+    ]);
+
+    //Them mo ta cho anh
+    Route::post('{idImg}/description', [
+        'middleware'=>'userLogin',
+        'as'  => 'image.describe',
+        'uses'=> 'ImagesController@describe'
+    ]);
+
+    //Sua thong tin cho anh
+    Route::post('{idImg}/edit', [
+        'middleware'=>'userLogin',
+        'as'  => 'image.edit',
+        'uses'=> 'ImagesController@edit'
+    ]);
+
+    //Xoa thong tin anh
+    Route::post('{idImg}/empty', [
+        'middleware'=>'userLogin',
+        'as'  => 'image.empty',
+        'uses'=> 'ImagesController@empty'
     ]);
 
     Route::group(['prefix'=>'tags','middleware'=>'userLogin'], function(){
@@ -104,7 +118,7 @@ Route::group(['prefix'=>'images'], function(){
         ]);
 
         //Xoa tag
-        Route::delete('{idImg}/delete/{idTag}', [
+        Route::post('{idImg}/delete/{idTag}', [
             'as'   => 'tag.destroy',
             'uses' => 'TagsController@destroy'
         ]);
@@ -118,7 +132,7 @@ Route::group(['prefix'=>'images'], function(){
         ]);
 
         //Xoa comment
-        Route::delete('delete/{idComment}', [
+        Route::post('delete/{idComment}', [
             'as'   => 'comment.destroy',
             'uses' => 'CommentsController@destroy'
         ]);

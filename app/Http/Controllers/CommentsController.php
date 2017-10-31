@@ -10,25 +10,30 @@ use App\Comment;
 
 class CommentsController extends Controller
 {
-    public function store($id) {
-        $content = Input::get('content');
+    public function store($id,Request $request) {
+        if($request->ajax()) {
+        $idImg = $request->idImg;
+        $content = $request->content;
         $idUser = Auth::user()->id;
 
-        Comment::create([
+        $comment = Comment::create([
             'content' => $content,
             'idImg' => $id,
             'idUser' => $idUser,
         ]);
         
-        return redirect()->route('image.show',$id);      
+        return $comment->id;  
+        }    
     }
 
     public function destroy($id,Request $request) {
-            $cmt = Comment::find($id);
-            $image = $cmt->image;
+        if($request->ajax()) {
+            $idCmt = $request->id;
+            $cmt = Comment::find($idCmt);
             if(!empty($cmt)){
                 $cmt->delete();
             }
-            return redirect()->route('image.show',$image->id);
+            return $idCmt;
+        }
     }
 }

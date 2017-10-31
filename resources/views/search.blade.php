@@ -15,7 +15,7 @@
 @stop
 
 @section('header')
-<header class="page-header">
+<header class="page-header up">
   <div id="row row-flex">
     <div class="col-xs-12 col-md-12">
       <strong><label class="col-xs-12 col-md-10" style="font-size: 125%"><big>Tìm thấy {{$albums->total() + $users->total() + $images->total() + $tags->total()}} kết quả với từ khóa <big>"{{$content}}"</big></label></strong>
@@ -25,7 +25,7 @@
 @stop
 
 @section('content')
-<section class="forms">
+<section class="forms up">
   <div class="container" id="container" style="min-height: 400px">
     <div id="searchResult" role="tablist" aria-multiselectable="true">
         <div class="card">
@@ -121,11 +121,14 @@
                 @else
                 <div class="row">
                     <div class="col-sm-12">
+                    @if(!Auth::guest() && Auth::user()->lv==1 && $images->total()>0)
+                    <button class="btn btn-sm btn-danger inline pull-right" disabled id="delete-mul-bt" data-toggle="modal" data-target="#deleteMulModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                    @endif
                     @include('parts.mulControl')
                     </div>
                 </div>
                 <div class="row">
-                    @foreach($images as $i)
+                    @foreach($images as $k=>$i)
                         @include('parts.image')
                     @endforeach
                 </div>
@@ -138,12 +141,12 @@
         </div>
     </div>
   </div>
+  @include('modals.deleteMulModal')
 </section>
+@include('parts.imageDetail')
 @stop
 
-@section('script')
-    @include('parts.imageScript')
-    @if($images->total()>0)
-    @include('parts.downloadScript')
-    @endif
+@section('script')  
+    @include('parts.albumScript')
+    @include('parts.mulControlScript')
 @stop

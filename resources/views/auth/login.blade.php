@@ -42,7 +42,7 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Địa chỉ email</label>
                             <div class="col-md-12">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -56,7 +56,7 @@
                             <label for="password" class="col-md-4 control-label">Mật khẩu</label>
 
                             <div class="col-md-12">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">

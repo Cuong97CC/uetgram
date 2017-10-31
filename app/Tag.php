@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Tag_Image;
 
 class Tag extends Model
 {
@@ -20,8 +21,8 @@ class Tag extends Model
             return $this->belongsToMany('App\Image', 'tags_images', 'idTag', 'idImg');
         }
 
-        public function user(){
-            return $this->belongsTo('App\User','idUser','id');
+        public function idUser($idImg, $idTag) {
+            $tag = Tag_Image::where('idTag', '=', $idTag, 'and', 'idImg', '=', $idImg)->first();
+            return $tag->idUser;
         }
-
 }

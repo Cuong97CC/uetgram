@@ -34,12 +34,7 @@ class AlbumsController extends Controller
                 'idUser'=> $idUser,
                 'idAlbumf' => $idAlbumf
             ]);
-            if($idAlbumf == 0) {
-                return redirect()->route('album.index')->with(['type'=>'success','msg'=>'Thêm album thành công!']);      
-            }
-            else {
-                return redirect()->route('album.show', [$idAlbumf])->with(['type'=>'success','msg'=>'Thêm album thành công!']);
-            } 
+            return redirect()->back()->with(['type'=>'success','msg'=>'Thêm album thành công!']);      
         }
     }
 
@@ -56,12 +51,7 @@ class AlbumsController extends Controller
             $album = Album::find($idAlbum);
             $album->title = $title;
             $album->save();
-            if($album->idAlbumf == 0) {
-                return redirect()->route('album.index')->with(['type'=>'success','msg'=>'Đổi tên album thành công!']);      
-            }
-            else {
-                return redirect()->route('album.show', [$album->idAlbumf])->with(['type'=>'success','msg'=>'TĐổi tên album thành công!']);
-            } 
+            return redirect()->back()->with(['type'=>'success','msg'=>'Đổi tên album thành công!']);      
         }
     }
 
@@ -75,15 +65,9 @@ class AlbumsController extends Controller
     public function destroy($idAlbum,Request $request) {
         $album = Album::find($idAlbum);
         $title = $album->title;
-        $idAlbumf = $album->idAlbumf;
         if(!empty($album)){
             $album->destroyA();
         }
-        if($idAlbumf == 0) {
-            return redirect()->route('album.index')->with(['type'=>'danger','msg'=>"Đã xóa album $title!"]); 
-        }
-        else {
-            return redirect()->route('album.show', [$idAlbumf])->with(['type'=>'danger','msg'=>"Đã xóa album $title!"]);
-        } 
+        return redirect()->back()->with(['type'=>'danger','msg'=>"Đã xóa album $title!"]); 
     }
 }

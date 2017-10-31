@@ -15,10 +15,10 @@
 @stop
 
 @section('header')
-<header class="page-header">
+<header class="page-header up">
   <div id="row row-flex">
     <div class="col-xs-12 col-md-12">
-      <label style="font-size: 125%">#{{$tag}}</strong></big></label>
+      <label style="font-size: 125%">#{{$content}}</strong></big></label>
       @include('parts.mulControl')
     </div>
   </div>
@@ -26,13 +26,13 @@
 @stop
 
 @section('content')
-<section class="forms">
+<section class="forms up">
   <div class="container" id="container" style="min-height: 400px">
-    @if($images->total()==0)
+    @if(!$images || $images->total()==0)
 		<p>Không có gì để hiển thị!</p>
 	  @else
 		<div class="row">
-		@foreach($images as $i)
+		@foreach($images as $k=>$i)
 			@include('parts.image')
 		@endforeach
 		</div>
@@ -41,10 +41,11 @@
 		</div>
 	  @endif
   </div>
+  @include('modals.deleteMulModal')
 </section>
+@include('parts.imageDetail')
 @stop
 
 @section('script')
-  @include('parts.imageScript')
-  @include('parts.downloadScript')
+  @include('parts.mulControlScript')
 @stop
