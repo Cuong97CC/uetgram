@@ -209,7 +209,11 @@ function makeDescription(idCmt, idImg) {
     },
     success: function (data) {
       if (data) {
-        $("#img-content" + idImg).html(data);
+        $("#content" + idImg).empty();
+        var newContent = `<p id="img-content` + idImg + `" class="inline">` + data + `     </p>  
+          <a href="javascript:void(0)" onClick="editDescription(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+          <a href="javascript:void(0)" onClick="deleteDescription(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a>`;
+        $("#content" + idImg).append(newContent);
       }
     }
   });

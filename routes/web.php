@@ -14,7 +14,6 @@
 Route::get('/', function () {
     return view('home');
 });
-<<<<<<< HEAD
 
 Route::get('/search/{content}',[
     'as'  => 'app.search',
@@ -22,10 +21,6 @@ Route::get('/search/{content}',[
 ]);
 
 Route::group(['prefix'=>'albums',], function(){
-=======
- 
-Route::group(['prefix'=>'albums'], function(){
->>>>>>> Template image details
     //Xem danh sach album root
     Route::get('/', [
         'as'   => 'album.index',
