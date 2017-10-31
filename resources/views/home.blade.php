@@ -10,6 +10,7 @@
       <!-- Sidebar Navidation Menus-->
         <ul class="list-unstyled">
             @include('parts.basicSideBar')
+
         </ul>
     </nav>
 @stop

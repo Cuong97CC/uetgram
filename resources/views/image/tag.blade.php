@@ -5,6 +5,7 @@
 @stop
 
 @section('sidebar')
+
 <nav class="side-navbar">
     @include('parts.sideHeader')
     <!-- Sidebar Navigation Menus-->
@@ -20,6 +21,7 @@
     <div class="col-xs-12 col-md-12">
       <label style="font-size: 125%">#{{$content}}</strong></big></label>
       @include('parts.mulControl')
+
     </div>
   </div>
 </header>

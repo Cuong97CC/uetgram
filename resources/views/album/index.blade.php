@@ -49,9 +49,12 @@
 </section>
 @stop
 
+<<<<<<< HEAD
 @section('script')
   @include('parts.albumScript')
 @stop
 
 
 
+=======
+>>>>>>> e9dd449d51251a9308c80b84dc866ffc26bb49b9

@@ -1,4 +1,5 @@
 <header class="header">
+
     <nav class="navbar">
       <!-- Search Box-->
       <div class="search-box">
@@ -44,14 +45,15 @@
                      Đăng xuất <i class="fa fa-sign-out" aria-hidden="true"></i>
                 </a>
 
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form>
-            </li>
-            @endif
-          </ul>
-        </div>
+
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+              </form>
+          </li>
+          @endif
+        </ul>
       </div>
+
     </nav>
   </header>
 
