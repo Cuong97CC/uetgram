@@ -23,7 +23,6 @@
 
     <!-- toastr -->
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 @if(Auth::guest())
@@ -36,11 +35,6 @@
         <div class="page-content d-flex align-items-stretch"> 
         @yield('sidebar')
             <div class="content-inner">
-                    @if(Session::has('msg'))
-                    <div id="msg" class="alert alert-{{ Session::get('type') }} alert-dismissable" style="text-align:center">
-                        <strong>Thông báo: </strong>{{ Session::get('msg') }}
-                    </div>
-                    @endif
                 @yield('header')
                 @yield('content')
                 @include('layouts.footer')
@@ -52,25 +46,23 @@
     <script type="text/javascript" src="{{ URL::asset('js/after.js') }}"></script>
     <script>
     @yield('script') 
-    </script>
-    <script>
-        @if(Session::has('message'))
-            var type="{{Session::get('alert-type', 'info')}}";
-            switch(type) {
-                case 'info': 
-                    toastr.info("{{Session::get('message')}}");
-                    break;
-                case 'success': 
-                    toastr.success("{{Session::get('message')}}");
-                    break;
-                case 'error': 
-                    toastr.error("{{Session::get('message')}}");
-                    break;
-                case 'warning': 
-                    toastr.warning("{{Session::get('message')}}");
-                    break;
-            }
-        @endif
+    @if(Session::has('message'))
+        var type="{{Session::get('alert-type', 'info')}}";
+        switch(type) {
+            case 'info': 
+                toastr.info("{{Session::get('message')}}");
+                break;
+            case 'success': 
+                toastr.success("{{Session::get('message')}}");
+                break;
+            case 'error': 
+                toastr.error("{{Session::get('message')}}");
+                break;
+            case 'warning': 
+                toastr.warning("{{Session::get('message')}}");
+                break;
+        }
+    @endif
     </script>
 </body>
 </html>

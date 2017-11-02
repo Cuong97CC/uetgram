@@ -39,7 +39,23 @@ $(document).ready(function () {
 
 });
 
-$("div.alert").delay(3000).slideUp();
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": false,
+  "positionClass": "toast-top-center",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": "300",
+  "hideDuration": "1000",
+  "timeOut": "3000",
+  "extendedTimeOut": "1000",
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "slideUp"
+  }
 
 $('#searchForm').on('keyup keypress', function (e) {
   var keyCode = e.keyCode || e.which;
@@ -392,7 +408,7 @@ function addTag(id) {
         },
         success: function (data) {
           if (data == "Existed") {
-            $("#tagExistModal").modal("show");
+            toastr.warning("Ảnh đã có sẵn nhãn bạn nhập!");
           } else {
             var json = JSON.parse(data);
             var tag = `<div id="tag` + json['id'] + `" class="inline tag">

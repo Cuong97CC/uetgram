@@ -315,3 +315,7 @@ section.forms {
 .del {
   color: red;
 }
+
+.toast {
+  opacity: 1 !important;
+}
