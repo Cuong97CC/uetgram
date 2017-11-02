@@ -23,38 +23,4 @@
 	@include('modals.deleteAlbumModal')
 @endif
 
-@if(!Auth::guest() && Auth::user()->lv==1)
-  <script>
-  	$("#folder{{$a->id}}").hover(function(){
-        $("#album-ctrl{{$a->id}}").fadeIn();
-    },function(){
-        $("#album-ctrl{{$a->id}}").fadeOut();
-    });
-
-	$("#edit-album-bt{{$a->id}}").on('click', function() {
-		$('#album-link{{$a->id}}').bind('click', function(e){
-        	e.preventDefault();
-		})
-		$("#album-title{{$a->id}}").empty();
-		var html=`<form class="form-inline" method="POST" action="{{route('album.edit',[$a->id])}}"  data-toggle="tooltip" data-placement="top" title="Nhấn 'Enter' để sửa. Click ra ngoài để hủy">
-					<input type="hidden" name="_token" value="{{ csrf_token() }}">
-					<input type="hidden" name="_method" value="PUT" >
-					<input id="edit{{$a->id}}" type="text" class="form-control inline" style="margin:5px;width:100%;text-align:center" name="title" value="{{$a->title}}" autocomplete="off">
-					</form>
-					`;
-		$("#album-title{{$a->id}}").append(html);
-		$(function () {
-    		$('[data-toggle="tooltip"]').tooltip()
-		});
-		$("#edit{{$a->id}}").focus();
-		$("#edit{{$a->id}}").focusout(function() {
-			$('#album-link{{$a->id}}').unbind('click');
-			$("#album-title{{$a->id}}").empty();
-			var html = "<h4>{{$a->title}}</h4>"
-			$("#album-title{{$a->id}}").append(html);
-		});
-	});
-  </script>
-@endif
-
 

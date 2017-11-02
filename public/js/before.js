@@ -39,35 +39,3 @@ function imgMouseOut(id) {
         $("#box" + id).fadeOut();
     }
 }
-
-$(document).ready(function () {
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    })
-
-    $("button.del-album").on('click', function () {
-        var idAlbum = $(this).attr('idAlbum');
-        var _token = $("#form-del" + idAlbum).find("input[name='_token']").val();
-        $.ajax({
-            url: "/albums/delete/" + idAlbum,
-            type: "POST",
-            cache: false,
-            data: {
-                "_token": _token,
-                "idAlbum": idAlbum
-            },
-            success: function (data) {
-                if (data == 'OK') {
-                    $("#deleteAlbumModal" + idAlbum).modal("hide");
-                    $("#album" + idAlbum).remove();
-                } else {
-                    alert("It failed");
-                }
-            }
-        });
-    });
-
-});
-
