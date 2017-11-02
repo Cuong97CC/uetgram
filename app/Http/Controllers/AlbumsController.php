@@ -34,7 +34,12 @@ class AlbumsController extends Controller
                 'idUser'=> $idUser,
                 'idAlbumf' => $idAlbumf
             ]);
-            return redirect()->back()->with(['type'=>'success','msg'=>'Thêm album thành công!']);      
+            echo "success";
+            $notificationMsg = array(
+                "message" => "Thêm mới album thành công!",
+                "alert-type" => "success"
+            );
+            return back()->with($notificationMsg);  
         }
     }
 
@@ -44,14 +49,24 @@ class AlbumsController extends Controller
             'title' => 'unique:albums'
         ]);
         if($validate->fails()){
-            return redirect()->back()->with(['type'=>'danger','msg'=>'Tiêu đề này đã tồn tại. Vui lòng chọn tiêu đề khác!']);      
+            echo "warning";
+            $notificationMsg = array(
+                "message" => "Tiêu đề này đã tồn tại. Vui lòng chọn tiêu đề khác!",
+                "alert-type" => "warning"
+            );
+            return back()->with($notificationMsg);  
         }
         else{
             $title = Input::get('title');
             $album = Album::find($idAlbum);
             $album->title = $title;
             $album->save();
-            return redirect()->back()->with(['type'=>'success','msg'=>'Đổi tên album thành công!']);      
+            echo "success";
+            $notificationMsg = array(
+                "message" => "Đổi tên album thành công!",
+                "alert-type" => "success"
+            );
+            return back()->with($notificationMsg);        
         }
     }
 
@@ -68,6 +83,11 @@ class AlbumsController extends Controller
         if(!empty($album)){
             $album->destroyA();
         }
-        return redirect()->back()->with(['type'=>'danger','msg'=>"Đã xóa album $title!"]); 
+        echo 'success';
+        $notificationMsg = array(
+            "message" => "Đã xóa album $title!",
+            "alert-type" => "success"
+        );
+        return back()->with($notificationMsg);  
     }
 }

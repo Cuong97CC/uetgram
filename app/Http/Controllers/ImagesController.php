@@ -46,7 +46,12 @@ class ImagesController extends Controller
                     'content' => $content
                 ]);
             }
-            return redirect()->route('album.show',$idAlbum)->with(['type'=>'success','msg'=>"Ảnh của bạn đã được đăng thành công!"]);
+            echo "success";
+            $notificationMsg = array(
+                "message" => "Ảnh của bạn đã được đăng thành công!",
+                "alert-type" => "success"
+            );
+            return back()->with($notificationMsg);  
         }
     }
 
@@ -108,10 +113,21 @@ class ImagesController extends Controller
                     $image->destroyI();
                 }
             }
-            return redirect()->back()->with(['type'=>'danger','msg'=>"Đã xóa (những) ảnh được chọn!"]);    
+            echo "success";
+            $notificationMsg = array(
+                "message" => "Đã xóa (những) ảnh được chọn!",
+                "alert-type" => "success"
+            );
+            return back()->with($notificationMsg); 
+                
         }   
         else {
-            return redirect()->back()->with(['type'=>'warning','msg'=>"Bạn đang cố xóa ảnh của người khác!"]);    
+            echo "warning";
+            $notificationMsg = array(
+                "message" => "Bạn đang cố xóa ảnh của người khác!",
+                "alert-type" => "warning"
+            );
+            return back()->with($notificationMsg); 
         }
     }
 }
