@@ -10,20 +10,20 @@
     <!-- Sidebar Navigation Menus-->
     <ul class="list-unstyled">
 
-					@include('parts.basicSideBar')
-          @if(!Auth::guest() && Auth::user()->lv > 0 && $images->total() == 0)
-          <li><a href="#" data-toggle="modal" data-target="#newAlbumModal"><i class="fa fa-plus" aria-hidden="true"></i>Album mới</a></li>
-		  		@endif
-          @if(!Auth::guest() && $subAlbums->total() == 0)
-          <li><a href="#" data-toggle="modal" data-target="#addImageModal"><i class="fa fa-upload" aria-hidden="true"></i>Tải ảnh lên</a></li>
-		  		@endif
+	@include('parts.basicSideBar')
+    @if(!Auth::guest() && Auth::user()->lv >= 0 && $images->total() == 0)
+    <li><a href="#" data-toggle="modal" data-target="#newAlbumModal"><i class="fa fa-plus" aria-hidden="true"></i>Album mới</a></li>
+	@endif
+	@if(!Auth::guest() && Auth::user()->lv >= 0 && $subAlbums->total() == 0)
+    <li><a href="#" data-toggle="modal" data-target="#addImageModal"><i class="fa fa-upload" aria-hidden="true"></i>Tải ảnh lên</a></li>
+	@endif
 
     </ul>
 </nav>	
-@if(!Auth::guest() && Auth::user()->lv > 0 && $images->total() == 0)
+@if(!Auth::guest() && Auth::user()->lv >= 0 && $images->total() == 0)
 	@include('modals.newAlbumModal')
 @endif
-@if(!Auth::guest() && $subAlbums->total() == 0)
+@if(!Auth::guest() && Auth::user()->lv >= 0 && $subAlbums->total() == 0)
 	@include('modals.addImageModal')
 @endif
 @stop
@@ -42,7 +42,7 @@
 			@endif
 			@endforeach
 			</label>
-				@include('parts.mulControl')
+			@include('parts.mulControl')
     </div>
   </div>
 </header>

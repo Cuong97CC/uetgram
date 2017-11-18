@@ -158,6 +158,7 @@ $('#searchResult').on('hidden.bs.collapse', function () {
 function clickImg(index) {
   $("header.up").slideUp();
   $("section.up").slideUp();
+  $("#toggle-btn").click();
   $("#image-detail").fadeIn();
   $('#image-detail').find('.carousel-item:nth-child(' + index + ')').addClass('active');
 }
@@ -165,6 +166,7 @@ function clickImg(index) {
 function hide() {
   $("#image-detail .carousel-item.active").removeClass('active');
   $("#image-detail").fadeOut();
+  $("#toggle-btn").click();
   $("header.up").slideDown();
   $("section.up").slideDown();
 }

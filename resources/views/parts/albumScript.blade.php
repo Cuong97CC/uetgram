@@ -1,4 +1,4 @@
-@if(!Auth::guest() && Auth::user()->lv==1)
+@if(!Auth::guest())
 function editAlbum(id, title) {
   $('#album-link' + id).bind('click', function (e) {
       e.preventDefault();

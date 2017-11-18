@@ -22,7 +22,7 @@ class AdminLogInMiddleWare
                 return $next($request);
             }
             else {
-                return redirect()->route('/');
+                return redirect('/');
             }
         }
         else {

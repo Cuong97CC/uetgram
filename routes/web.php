@@ -29,14 +29,14 @@ Route::group(['prefix'=>'albums',], function(){
 
     //Luu album moi
     Route::post('{idAlbumf}/store', [
-        'middleware'=>'adminLogin',
+        'middleware'=>'userLogin',
         'as'  => 'album.store',
         'uses'=> 'AlbumsController@store'
     ]);
 
     //Đổi tên album
     Route::put('{idAlbum}/edit', [
-        'middleware'=>'adminLogin',
+        'middleware'=>'userLogin',
         'as'  => 'album.edit',
         'uses'=> 'AlbumsController@edit'
     ]);
@@ -49,7 +49,7 @@ Route::group(['prefix'=>'albums',], function(){
 
     //Xoa mot album
     Route::delete('delete/{idAlbum}', [
-        'middleware'=>'adminLogin',
+        'middleware'=>'userLogin',
         'as'   => 'album.destroy',
         'uses' => 'AlbumsController@destroy'
     ]);

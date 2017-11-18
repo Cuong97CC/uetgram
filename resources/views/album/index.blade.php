@@ -10,12 +10,12 @@
       <!-- Sidebar Navigation Menus-->
         <ul class="list-unstyled">
           @include('parts.basicSideBar')
-          @if(!Auth::guest() && Auth::user()->lv > 0)
+          @if(!Auth::guest() && Auth::user()->lv >= 0)
           <li><a href="#" data-toggle="modal" data-target="#newAlbumModalRoot"><i class="fa fa-plus" aria-hidden="true"></i>Album mới</a></li>
           @endif
         </ul>
     </nav>
-    @if(!Auth::guest() && Auth::user()->lv > 0)
+    @if(!Auth::guest() && Auth::user()->lv >= 0)
       @include('modals.newAlbumModalRoot')
     @endif
 @stop

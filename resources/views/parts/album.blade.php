@@ -1,6 +1,6 @@
 <div class="col-sm-3 text-center">
     <div class="folder" id="folder{{$a->id}}" onmouseenter="albumMouseOver('{{$a->id}}')" onmouseleave="albumMouseOut('{{$a->id}}')">
-		@if(!Auth::guest() && Auth::user()->lv==1)
+		@if(!Auth::guest() && (Auth::user()->lv==1 || $a->user->id == Auth::user()->id))
 		<div id="album-ctrl{{$a->id}}" style="display:none">
 		<button id="del-album-bt{{$a->id}}" class="btn btn-sm btn-danger pull-right" data-toggle="modal" data-target="#deleteAlbumModal{{$a->id}}" style="font-size: 75%"><i class="fa fa-trash" aria-hidden="true"></i></button>
 		<button id="edit-album-bt{{$a->id}}" class="btn btn-sm btn-info pull-right" style="font-size: 75%" onClick="editAlbum({{$a->id}},'{{$a->title}}')"><i class="fa fa-pencil" aria-hidden="true"></i></button>
@@ -19,7 +19,7 @@
     </div>   
 </div>
 
-@if(!Auth::guest() && Auth::user()->lv==1)
+@if(!Auth::guest() && (Auth::user()->lv==1 || $a->user->id == Auth::user()->id))
 	@include('modals.deleteAlbumModal')
 @endif
 

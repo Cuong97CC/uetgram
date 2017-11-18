@@ -31,13 +31,21 @@ class ImagesController extends Controller
             $title = Input::get('title');
             $content = Input::get('content');
             $idUser = Auth::user()->id;
+            if(!is_dir("storage/upload/".date("Y"))) {
+                mkdir("storage/upload/".date("Y"));
+                if(!is_dir("storage/upload/".date("Y")."/thang".date("m"))) {
+                    mkdir("storage/upload/".date("Y")."/thang".date("m"));
+                }
+            }
             foreach($files as $file){
                 $name = $file->getClientOriginalName();
-                $img = str_random(4)."_". $name;
+                $fname = str_random(4)."_". $name;
+                $img = date("Y")."/thang".date("m")."/".$fname;
                 while(file_exists("storage/upload/".$img)){
-                    $img = str_random(4)."_". $name;
+                    $fname = str_random(4)."_". $name;
+                    $img = date("Y")."/thang".date("m")."/".$fname;
                 }
-                $file->move('storage/upload', $img);
+                $file->move("storage/upload/".date("Y")."/thang".date("m")."/", $fname);
                 Image::create([
                     'idUser' => $idUser,
                     'img' => $img,
@@ -46,7 +54,6 @@ class ImagesController extends Controller
                     'content' => $content
                 ]);
             }
-            echo "success";
             $notificationMsg = array(
                 "message" => "Ảnh của bạn đã được đăng thành công!",
                 "alert-type" => "success"
@@ -113,7 +120,6 @@ class ImagesController extends Controller
                     $image->destroyI();
                 }
             }
-            echo "success";
             $notificationMsg = array(
                 "message" => "Đã xóa (những) ảnh được chọn!",
                 "alert-type" => "success"
@@ -122,7 +128,6 @@ class ImagesController extends Controller
                 
         }   
         else {
-            echo "warning";
             $notificationMsg = array(
                 "message" => "Bạn đang cố xóa ảnh của người khác!",
                 "alert-type" => "warning"
