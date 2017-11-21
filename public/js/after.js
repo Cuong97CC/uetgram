@@ -158,7 +158,9 @@ $('#searchResult').on('hidden.bs.collapse', function () {
 function clickImg(index) {
   $("header.up").slideUp();
   $("section.up").slideUp();
-  $("#toggle-btn").click();
+  if ($('#toggle-btn').hasClass('active')) {
+    $("#toggle-btn").click();
+  }
   $("#image-detail").fadeIn();
   $('#image-detail').find('.carousel-item:nth-child(' + index + ')').addClass('active');
 }
@@ -398,30 +400,35 @@ function addTag(id) {
   $("#input" + id).on('keyup', function (e) {
     var content = $("#input" + id).val();
     if (e.keyCode == 13 && content.trim() != '') {
-      var _token = $('meta[name="csrf-token"]').attr('content');
-      $.ajax({
-        url: "/images/tags/" + id + "/addtag",
-        type: "POST",
-        cache: false,
-        data: {
-          "_token": _token,
-          "idImg": id,
-          "content": content
-        },
-        success: function (data) {
-          if (data == "Existed") {
-            toastr.warning("Ảnh đã có sẵn nhãn bạn nhập!");
-          } else {
-            var json = JSON.parse(data);
-            var tag = `<div id="tag` + json['id'] + `" class="inline tag">
-                        <a href="/images/tags/` + json['content'] + `" class="tag-content">#` + json['content'] + `</a>
-                        <a href="javascript:void(0)" onClick="deleteTag(` + id + `,` + json['id'] + `)" class="tag-del"><i class="fa fa-times" aria-hidden="true"></i></a>
-                        </div>`;
-            $("#tag-area" + id).append(tag);
-            $("#add-tag-area" + id).empty();
+      if(content.trim().length < 20) {
+        var _token = $('meta[name="csrf-token"]').attr('content');
+        $.ajax({
+          url: "/images/tags/" + id + "/addtag",
+          type: "POST",
+          cache: false,
+          data: {
+            "_token": _token,
+            "idImg": id,
+            "content": content
+          },
+          success: function (data) {
+            if (data == "Existed") {
+              toastr.warning("Ảnh đã có sẵn nhãn bạn nhập!");
+            } else {
+              var json = JSON.parse(data);
+              var tag = `<div id="tag` + json['id'] + `" class="inline tag">
+                          <a href="/images/tags/` + json['content'] + `" class="tag-content">#` + json['content'] + `</a>
+                          <a href="javascript:void(0)" onClick="deleteTag(` + id + `,` + json['id'] + `)" class="tag-del"><i class="fa fa-times" aria-hidden="true"></i></a>
+                          </div>`;
+              $("#tag-area" + id).append(tag);
+              $("#add-tag-area" + id).empty();
+            }
           }
-        }
-      });
+        });
+      }
+      else {
+        toastr.warning("Nhãn không được chứa quá 20 ký tự!");
+      }
     }
   });
   $("#input" + id).focusout(function () {

@@ -92,13 +92,13 @@
                 @if($tags->total()==0)
                 <p>Không có gì để hiển thị!</p>
                 @else
-                <ul style="margin-left:25px">
+
                 @foreach ($tags as $t)
-                    <li>
-                        <a href="{{ route('tag.findimages',$t->content) }}">#{{$t->content}}</a>
-                    </li>
+                <div class="col-sm-2 inline">
+                    <a href="{{ route('tag.findimages',$t->content) }}">#{{$t->content}}</a>
+                </div>
                 @endforeach
-                </ul>   
+  
                 <div class="col-md-12">
                     {!! $tags->links('vendor.pagination.bootstrap-4'); !!}
                 </div>
