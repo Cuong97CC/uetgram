@@ -20,7 +20,7 @@
 <header class="page-header up">
   <div id="row row-flex">
     <div class="col-sm-12">
-      <strong><label style="font-size: 125%">Danh sách tài khoản</label></strong>
+      <strong><label style="font-size: 125%">Quản lý người dùng</label></strong>
     </div>
   </div>
 </header>
