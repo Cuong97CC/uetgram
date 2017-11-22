@@ -29,6 +29,10 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'], function() {
         'as'  => 'admin.update',
         'uses'=> 'AdminController@update'
     ]);
+    Route::get('filter', [
+        'as' => 'admin.filter',
+        'uses' => 'AdminController@filter'
+    ]);
 });
 
 Route::group(['prefix'=>'albums',], function(){

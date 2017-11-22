@@ -459,3 +459,5 @@ function downloadSingle(location) {
   $("#single-hidden-link").attr("href", location);
   document.getElementById("single-hidden-link").click();
 }
+
+

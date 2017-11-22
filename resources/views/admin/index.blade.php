@@ -31,7 +31,7 @@
   <div class="container" id="container" style="min-height: 400px">
   <div class="col-sm-12" id="manage">
   <h2>Thống kê</h2>
-  <p>Tổng số tài khoản: {{ $users->total() }}</p>
+  <p>Tổng số tài khoản: {{ $allUsers->count() }}</p>
   <p>Quản trị viên: {{ $admin }}</p>
   <p>Người dùng thường: {{ $normal }}</p>
   <p>Tài khoản bị khóa: {{ $banned }}</p>
@@ -47,6 +47,29 @@
         </tr>
       </thead>
       <tbody>  
+        <tr>
+          <td>
+            <form method="GET" class="form-inline" action="{{ route('admin.filter') }}">
+            <input type="text" name="name-search">
+          </td>
+          <td>
+            <input type="text" name="email-search">
+          </td>
+          <td></td>
+          <td>
+            <select class="form-control-sm" name="type-filter">
+              <option value="99">Tất cả</option>
+              <option value="1">Quản trị</option>
+              <option value="0">Người dùng thường</option>
+              <option value="-1">Bị khóa</option>
+            </select>
+          </td>
+          <td>
+            <button type="submit" class="btn btn-primary btn-sm inline">Lọc</button>
+            <a id="hidden-filter" href="#" style="display:none"></a>
+            </form>
+          </td>
+        </tr>
         @foreach ($users as $user)
             <tr>
               <td>{{ $user->name }}</td>
