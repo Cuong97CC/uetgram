@@ -20,6 +20,23 @@ Route::get('/search/{content}',[
     'uses' => 'AppController@search'
 ]);
 
+Route::group(['prefix'=>'admin',], function() {
+    Route::get('/', [
+        'as' => 'admin.index',
+        'uses' => 'AdminController@index'
+    ]);
+    Route::post('{idUser}/update', [
+        'middleware'=>'userLogin',
+        'as'  => 'admin.update',
+        'uses'=> 'AdminController@update'
+    ]);
+    Route::post('{idUser}/openAcount', [
+        'middleware'=>'userLogin',
+        'as'  => 'admin.openAcount',
+        'uses'=> 'AdminController@openAcount'
+    ]);
+});
+
 Route::group(['prefix'=>'albums',], function(){
     //Xem danh sach album root
     Route::get('/', [

@@ -22,4 +22,3 @@
 @section('script')
 
 @stop
-

@@ -15,7 +15,7 @@
 					<input class="form-control" type="text" placeholder="Tiêu đề" name="title" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')"></br>
 					</br>
 					<div class="form-group" style="text-align: center">                   
-						<button type="submit" class="btn btn-primary"><i class="fa fa-plus" aria-hidden="true"></i></span> Tạo</button>
+						<button type="submit" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span> Tạo</button>
 						<button type="button" class="btn btn-warning" data-dismiss="modal"><i class="fa fa-times-circle" area-hidden="true"></i> Hủy</button>
 					</div>
 				</form>

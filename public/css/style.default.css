@@ -93,7 +93,7 @@ table {
 }
 
 .card-close .dropdown-menu a:hover {
-  background: #796AEE;
+  background: #596092;
   color: #fff !important;
 }
 
@@ -428,7 +428,7 @@ nav.side-navbar ul a {
 }
 
 nav.side-navbar ul a:hover {
-  background: #796AEE;
+  background: #596092;
   border-left: 4px solid #3b25e6;
   color: #fff;
 }
@@ -2010,8 +2010,8 @@ fieldset[disabled] a.btn {
 
 .btn-primary {
   color: #fff;
-  background-color: #796AEE;
-  border-color: #796AEE;
+  background-color: #596092;
+  border-color: #596092;
 }
 
 .btn-primary:hover {

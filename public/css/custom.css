@@ -119,13 +119,13 @@ ul li a:hover>i.fa {
   z-index: 10000;
 }
 
-.modal-header {
+/*.modal-header {
   background-color: #DDD;
 }
 
 .modal-footer {
   background-color: #DDD;
-}
+}*/
 
 #imageDetailModalDialog {
   width: 100%;
