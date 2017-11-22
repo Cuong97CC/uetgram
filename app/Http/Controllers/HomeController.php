@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Validator;
+use Input;
+use Auth;
+use File;
+use App\Comment;
+use App\Image;
+
 
 class HomeController extends Controller
 {
@@ -22,7 +30,9 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('home');
+    {   
+      $allImages = Image::all();
+      $images = Image::orderBy('created_at',' DESC')->paginate(15);
+      return view('home', compact('images'));
     }
 }
