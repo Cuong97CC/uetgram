@@ -16,7 +16,7 @@
               </a>
               <div class="card-footer">
                 @if($image->title != '')
-                  <h2>Tiêu đề: {{$image->title}}</h2>
+                  <label>Tiêu đề: {{$image->title}}</label>
                 @endif
               </div>
             </div>

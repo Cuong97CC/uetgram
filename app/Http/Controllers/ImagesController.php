@@ -15,6 +15,7 @@ class ImagesController extends Controller
 {
     public function index() {
         $images = Image::paginate(18);
+        $images->created_at = date('Y-m-d H:i:s');
         $valid = false;
         foreach($images as $i) {
             if($i->user->lv >= 0) {
