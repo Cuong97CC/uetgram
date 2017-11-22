@@ -8,16 +8,19 @@
 <section class="forms up">
   <div class="container" id="container" style="min-height: 400px">  
     <div class="row row-flex">    
-      @foreach ($images as $image)
+      @foreach ($images as $k=>$i)
           <div class="col-lg-4 col-md-6 sb-preview text-center">
             <div class="card h-100">
-              <a href="#">
-                <img class="card-img-top" src="{{ URL::to('/storage/upload/' . $image->img) }}"/>
+              <a href="javascript:void(0)" onClick="clickImg({{$k+1}})">
+                <img class="card-img-top" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
               </a>
               <div class="card-footer">
-                @if($image->title != '')
-                  <h2>Tiêu đề: {{$image->title}}</h2>
-                @endif
+              <p>Đăng bởi:
+                <strong>
+                  <a href="{{ route('image.userimg',[$i->user->name]) }}">{{$i->user->name}}</a>
+                </strong>
+              </p>
+              <p>Ngày đăng:&nbsp;{{date('d-m-Y h:m', strtotime($i->created_at))}}</p>
               </div>
             </div>
           </div>
@@ -25,3 +28,4 @@
     </div>
   </div>
 </section>
+@include('parts.imageDetail')
