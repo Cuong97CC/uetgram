@@ -13,11 +13,11 @@ use App\User;
 class AdminController extends Controller
 {
   public function index() {
-    $users = User::paginate(15);
+    $allUsers = User::all();
     $admin = 0;
     $normal = 0;
     $banned = 0;
-    foreach($users as $u) {
+    foreach($allUsers as $u) {
       if($u->lv == 1) {
         $admin++;
       }
@@ -28,6 +28,7 @@ class AdminController extends Controller
         $banned++;
       }
     }
+    $users = User::paginate(15);
     return view('admin.index',compact('users','admin','normal','banned'));  
   }
 
