@@ -230,7 +230,9 @@ function makeDescription(idCmt, idImg) {
     success: function (data) {
       if (data) {
         $("#content" + idImg).empty();
-        var newContent = `<p id="img-content` + idImg + `" class="inline">` + data + `     </p>  
+        var newContent = `
+          <label>Mô tả:&nbsp;</label>
+          <p id="img-content` + idImg + `" class="inline">` + data + ` </p>  
           <a href="javascript:void(0)" onClick="editDescription(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           <a href="javascript:void(0)" onClick="deleteDescription(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a>`;
         $("#content" + idImg).append(newContent);
@@ -247,7 +249,8 @@ function editTitle(idImg) {
     title = title.trim();
   }
   $("#title" + idImg).empty();
-  var html = `<input type="text" class="form-control" placeholder="Tiêu đề..." id="edit-title` + idImg + `">`;
+  var html = `<label>Tiêu đề mới:&nbsp;</label>
+    <input type="text" class="form-control" placeholder="Tiêu đề..." id="edit-title` + idImg + `">`;
   $("#title" + idImg).append(html);
   $("#edit-title" + idImg).val(title);
   $("#edit-title" + idImg).focus();
@@ -268,7 +271,9 @@ function editTitle(idImg) {
           if (data) {
             var json = JSON.parse(data);
             $("#title" + idImg).empty();
-            var newTitle = `<h1 id="img-title` + idImg + `" class="inline">` + json['title'] + `     </h1>
+            var newTitle = `
+            <label>Tiêu đề ảnh:&nbsp;</lable>
+            <h1 id="img-title` + idImg + `" class="inline">` + json['title'] + `     </h1>
             <h1 class="inline"><a href="javascript:void(0)" onClick="editTitle(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a></h1>
             <h1 class="inline"><a href="javascript:void(0)" onClick="deleteTitle(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a></h1>`;
             $("#title" + idImg).append(newTitle);
@@ -333,7 +338,9 @@ function editDescription(idImg) {
     content = content.trim();
   }
   $("#content" + idImg).empty();
-  var html = `<textarea class="form-control" rows="3" placeholder="Mô tả..." id="edit-content` + idImg + `"></textarea>`;
+  var html = `
+    <label>Mô tả mới</label>
+    <textarea class="form-control" rows="3" placeholder="Mô tả..." id="edit-content` + idImg + `"></textarea>`;
   $("#content" + idImg).append(html);
   $("#edit-content" + idImg).val(content);
   $("#edit-content" + idImg).focus();
@@ -354,7 +361,9 @@ function editDescription(idImg) {
           if (data) {
             var json = JSON.parse(data);
             $("#content" + idImg).empty();
-            var newContent = `<p id="img-content` + idImg + `" class="inline">` + json['content'] + `     </p>  
+            var newContent = `
+              <label>Mô tả:&nbsp;</label>
+              <p id="img-content` + idImg + `" class="inline">` + json['content'] + `     </p>  
               <a href="javascript:void(0)" onClick="editDescription(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
               <a href="javascript:void(0)" onClick="deleteDescription(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a>`;
             $("#content" + idImg).append(newContent);

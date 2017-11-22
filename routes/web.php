@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/',[
+    'as' => 'home.images',
+    'uses' => 'HomeController@index'
+    //return view('home');
+]);
 
 Route::get('/search/{content}',[
     'as'  => 'app.search',
