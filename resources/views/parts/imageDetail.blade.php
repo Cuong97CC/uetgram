@@ -65,7 +65,7 @@
                   <a href="{{ route('image.userimg',[$i->user->name]) }}">{{$i->user->name}}</a>
                 </strong>
               </p>
-              <p>Ngày đăng:&nbsp;{{date('d-m-Y h:m', strtotime($i->created_at))}}</p>
+              <p>Ngày đăng:&nbsp;{{$i->created_at->format('d-m-Y H:i')}}</p>
               <div id="tag-area{{$i->id}}" style="margin-bottom: 5px">
               @foreach($i->tags as $t)
               <div class="inline tag" id="tag{{$t->id}}">
