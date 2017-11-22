@@ -27,7 +27,6 @@
             <div class="col-md-4">
               <div id="title{{$i->id}}" class="detail">
               @if($i->title && $i->title != '')
-              <label>Tiêu đề ảnh:&nbsp;</label>
               <h1 id="img-title{{$i->id}}" class="inline">{{$i->title}}</h1>
               @if(Auth::user()->lv==1 || Auth::user()->id == $i->idUser) 
               <h1 class="inline">

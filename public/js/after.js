@@ -272,7 +272,6 @@ function editTitle(idImg) {
             var json = JSON.parse(data);
             $("#title" + idImg).empty();
             var newTitle = `
-            <label>Tiêu đề ảnh:&nbsp;</lable>
             <h1 id="img-title` + idImg + `" class="inline">` + json['title'] + `     </h1>
             <h1 class="inline"><a href="javascript:void(0)" onClick="editTitle(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a></h1>
             <h1 class="inline"><a href="javascript:void(0)" onClick="deleteTitle(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a></h1>`;
@@ -339,7 +338,7 @@ function editDescription(idImg) {
   }
   $("#content" + idImg).empty();
   var html = `
-    <label>Mô tả mới</label>
+    <label>Mô tả mới:</label>
     <textarea class="form-control" rows="3" placeholder="Mô tả..." id="edit-content` + idImg + `"></textarea>`;
   $("#content" + idImg).append(html);
   $("#edit-content" + idImg).val(content);
