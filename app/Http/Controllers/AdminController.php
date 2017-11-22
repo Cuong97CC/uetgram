@@ -17,12 +17,12 @@ class AdminController extends Controller
     return view('admin.index',compact('users'));  
   }
 
-  public function update($idUser, Request $request) {
+  public function update($idUser,$lv, Request $request) {
     $user = User::find($idUser);
-    $user->lv = Input::get('lv');
+    $user->lv = $lv;
     $user->save();
     $notificationMsg = array(
-      "message" => "Cấp quyền cho tài khoản thành công!",
+      "message" => "Thay đổi quyền tài khoản thành công!",
       "alert-type" => "success"
     );
     return back()->with($notificationMsg);

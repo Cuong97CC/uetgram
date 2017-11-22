@@ -20,20 +20,14 @@ Route::get('/search/{content}',[
     'uses' => 'AppController@search'
 ]);
 
-Route::group(['prefix'=>'admin',], function() {
+Route::group(['prefix'=>'admin','middleware'=>'adminLogin'], function() {
     Route::get('/', [
         'as' => 'admin.index',
         'uses' => 'AdminController@index'
     ]);
-    Route::post('{idUser}/update', [
-        'middleware'=>'userLogin',
+    Route::post('{idUser}/update/{lv}', [
         'as'  => 'admin.update',
         'uses'=> 'AdminController@update'
-    ]);
-    Route::post('{idUser}/openAcount', [
-        'middleware'=>'userLogin',
-        'as'  => 'admin.openAcount',
-        'uses'=> 'AdminController@openAcount'
     ]);
 });
 

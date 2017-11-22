@@ -319,3 +319,7 @@ section.forms {
 .toast {
   opacity: 1 !important;
 }
+
+table button {
+  margin: 0 auto;
+}

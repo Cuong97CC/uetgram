@@ -31,35 +31,54 @@
     <table class="table table-striped" style="padding-top: 20px">
       <thead>
         <tr>
-          <th>Họ tên</th>
+          <th>Tên</th>
           <th>Email</th>
-          <th>Quyền</th>
-          <th>Sửa</th>
+          <th>Số ảnh</th>
+          <th>Trạng thái</th>
+          <th>Hành động</th>
         </tr>
       </thead>
       <tbody>  
         @foreach ($users as $user)
             <tr>
-              <td>{{ $user->name}}</td>
-              <td>{{ $user->email}}</td>
+              <td>{{ $user->name }}</td>
+              <td>{{ $user->email }}</td>
+              <td>{{ $user->images->count() }}</td>
               @if ($user->lv == 0)
               <td>Người dùng thường</td>
               @elseif ($user->lv > 0)
               <td>Quản trị viên</td>
               @else
-              <td>
-                <a href="#" data-toggle="modal" title="Mở khóa tài khoản" data-target="#openAcountModal{{$user->id}}">
-                  Tài khoản đã bị khóa
-                </a>
-                @include('modals.openAcount')
-              </td>
+              <td style="color: red">Bị khóa</td>
               @endif
-              @if ($user->lv == 0)
+              @if ($user->lv != 1)
               <td> 
-                <a href="#" data-toggle="modal" data-target="#editUserModal{{$user->id}}">
-                  <i class="fa fa-edit" aria-hidden="true"></i>
-                </a>
-                  @include('modals.editUser') 
+                <div class="btn-group-sm" role="group" aria-label="Basic example">
+                  @if ($user->lv != -1)
+                  <form method="POST" class="form-group inline" action="{{ route('admin.update',[$user->id,1]) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-info btn-sm inline">Admin</button>
+                  </form>
+                  @else
+                  <button class="btn btn-info btn-sm inline disabled">Admin</button>
+                  @endif
+                  @if ($user->lv != -1)
+                  <form method="POST" class="form-group inline" action="{{ route('admin.update',[$user->id,-1]) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-danger btn-sm">Khóa</button>
+                  </form>
+                  @else
+                  <button type="button" class="btn btn-danger disabled">Khóa</button>
+                  @endif
+                  @if ($user->lv == -1)
+                  <form method="POST" class="form-group inline" action="{{ route('admin.update',[$user->id,0]) }}">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <button type="submit" class="btn btn-success btn-sm">Mở khóa</button>
+                  </form>
+                  @else
+                  <button type="button" class="btn btn-success disabled">Mở khóa</button>
+                  @endif
+                </div> 
               </td>
               @else 
               <td></td>
