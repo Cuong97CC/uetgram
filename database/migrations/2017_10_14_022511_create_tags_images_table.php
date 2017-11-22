@@ -17,7 +17,11 @@ class CreateTagsImagesTable extends Migration
             $table->increments('id');
             $table->integer('idTag');
             $table->integer('idImg');
+            $table->integer('idUser')->unsigned();
             $table->timestamps();
+        });
+         Schema::table('tags_images', function($table) {
+            $table->foreign('idUser')->references('id')->on('users');
         });
     }
 

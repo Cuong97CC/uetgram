@@ -50,7 +50,3 @@
 @section('script') 
   @include('parts.mulControlScript')
 @stop
-
-
-
-

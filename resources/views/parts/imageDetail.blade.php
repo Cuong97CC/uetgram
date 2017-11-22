@@ -72,7 +72,7 @@
               <button onClick="addTag({{$i->id}})" class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="bottom" title="Gán nhãn"><i class="fa fa-tag" aria-hidden="true"></i></button>
               @if(Auth::user()->lv==1 || Auth::user()->id == $i->idUser) 
               <span data-toggle="modal" data-target="#deleteSingleModal{{$i->id}}">
-              <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="bottom" title="Xóa"><i class="fa fa-trash" aria-hidden="true"></i></button>
               </span>
               @endif
               <a id="single-hidden-link" download="" href="" style="display:none"></a>
