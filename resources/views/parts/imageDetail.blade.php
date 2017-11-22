@@ -3,19 +3,19 @@
   <div class="container" id="container">
     <div id="carouselDetail" class="carousel slide" data-ride="carousel" data-interval="false">
       <div class="row">
-      <div class="col-sm-4">
-      <a class="btn btn-primary carousel-control pull-left" href="#carouselDetail" role="button" data-slide="prev">
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
-      </a>
-      </div>
-      <div class="col-sm-4">
-      <button onClick="hide()" class="btn btn-primary btn-block"><i class="fa fa-th" aria-hidden="true"></i></button>
-      </div>
-      <div class="col-sm-4">
-      <a class="btn btn-primary carousel-control pull-right" href="#carouselDetail" role="button" data-slide="next">
-        <i class="fa fa-chevron-right" aria-hidden="true"></i>
-      </a>
-      </div>
+        <div class="col-sm-4">
+        <a class="btn btn-primary carousel-control pull-left" href="#carouselDetail" role="button" data-slide="prev">
+          <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        </a>
+        </div>
+        <div class="col-sm-4">
+        <button onClick="hide()" class="btn btn-primary btn-block"><i class="fa fa-th" aria-hidden="true"></i></button>
+        </div>
+        <div class="col-sm-4">
+        <a class="btn btn-primary carousel-control pull-right" href="#carouselDetail" role="button" data-slide="next">
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+        </a>
+        </div>
       </div>
       <div class="carousel-inner" role="listbox">
         @foreach($images as $i)
@@ -27,10 +27,19 @@
             <div class="col-md-4">
               <div id="title{{$i->id}}" class="detail">
               @if($i->title && $i->title != '')
-              <h1 id="img-title{{$i->id}}" class="inline">{{$i->title}}     </h1>
+              <label>Tiêu đề ảnh:&nbsp;</label>
+              <h1 id="img-title{{$i->id}}" class="inline">{{$i->title}}</h1>
               @if(Auth::user()->lv==1 || Auth::user()->id == $i->idUser) 
-              <h1 class="inline"><a href="javascript:void(0)" onClick="editTitle({{$i->id}})"><i class="fa fa-pencil" aria-hidden="true"></i></a></h1>
-              <h1 class="inline"><a href="javascript:void(0)" onClick="deleteTitle({{$i->id}})" class="del"><i class="fa fa-times" aria-hidden="true"></i></a></h1>
+              <h1 class="inline">
+                <a href="javascript:void(0)" onClick="editTitle({{$i->id}})" title="Chỉnh sửa tiêu đề">
+                  <i class="fa fa-pencil" aria-hidden="true"></i>
+                </a>
+              </h1>
+              <h1 class="inline">
+                <a href="javascript:void(0)" onClick="deleteTitle({{$i->id}})" class="del" title="Xóa tiêu đề">
+                  <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+              </h1>
               @endif
               @else
               @if(Auth::user()->lv==1 || Auth::user()->id == $i->idUser) 
@@ -40,6 +49,7 @@
               </div>
               <div id="content{{$i->id}}" class="detail">
               @if($i->content)
+              <label>Mô tả:&nbsp;</label>
               <p id="img-content{{$i->id}}" class="inline">{{$i->content}}     </p>  
               @if(Auth::user()->lv==1 || Auth::user()->id == $i->idUser) 
               <a href="javascript:void(0)" onClick="editDescription({{$i->id}})"><i class="fa fa-pencil" aria-hidden="true"></i></a>
@@ -56,6 +66,7 @@
                   <a href="{{ route('image.userimg',[$i->user->name]) }}">{{$i->user->name}}</a>
                 </strong>
               </p>
+              <p>Ngày đăng:&nbsp;{{$i->user->created_at}}</p>
               <div id="tag-area{{$i->id}}" style="margin-bottom: 5px">
               @foreach($i->tags as $t)
               <div class="inline tag" id="tag{{$t->id}}">
@@ -79,22 +90,24 @@
             </div>
             <div class="col-md-12 comment-area" id="comment-area{{$i->id}}">
               <div style="margin:5px" id="form-cmt{{$i->id}}">
-                    <label class="form-label" for="content">Bình luận:</label>
-                    <textarea class="form-control" row="3" placeholder="Nhập bình luận..." name="content" style="display:inline" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')"></textarea>
-                    @if(Auth::user()->lv==1 || Auth::user()->id==$i->idUser)
-                    <button onClick="comment({{$i->id}},'{{Auth::user()->name}}',1)" class="btn btn-primary" style="float:right">Đăng</button>
-                    @else
-                    <button onClick="comment({{$i->id}},'{{Auth::user()->name}}',0)" class="btn btn-primary" style="float:right">Đăng</button>
-                    @endif
+                <label class="form-label" for="content">Bình luận:</label>
+                <textarea class="form-control" row="3" placeholder="Nhập bình luận..." name="content" style="display:inline" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')"></textarea>
+                @if(Auth::user()->lv==1 || Auth::user()->id==$i->idUser)
+                <button onClick="comment({{$i->id}},'{{Auth::user()->name}}',1)" class="btn btn-primary" style="float:right">Đăng</button>
+                @else
+                <button onClick="comment({{$i->id}},'{{Auth::user()->name}}',0)" class="btn btn-primary" style="float:right">Đăng</button>
+                @endif
               </div></br></br>
               @foreach($i->comments as $c)
                   <div class="comment" id="comment{{$c->id}}">
                       <p class="inline"><strong><a href="{{ route('image.userimg',[$c->user->name]) }}">{{ $c->user->name }}</a></strong> : {{ $c->content }}</p></br>
                       @if($i->idUser == Auth::user()->id || $c->idUser == Auth::user()->id || Auth::user()->lv==1)
-                          <button onClick="deleteCmt({{$c->id}})" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                          <button title="Xóa bình luận" onClick="deleteCmt({{$c->id}})" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
                       @endif
                       @if(Auth::user()->lv==1 || Auth::user()->id==$i->idUser)
-                          <button onClick="makeDescription({{$c->id}},{{$i->id}})" class="btn btn-sm btn-info"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                          <button title="Chọn bình luận làm mô tả cho ảnh" onClick="makeDescription({{$c->id}},{{$i->id}})" class="btn btn-sm btn-info">
+                            <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                          </button>
                       @endif
                   </div>
               @endforeach

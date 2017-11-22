@@ -1,55 +1,27 @@
-<div class="page login-page">
-  <div class="container d-flex align-items-center">
-    <div class="form-holder has-shadow">
-      <div class="row">
-        <!-- Logo & Information Panel-->
-        <div class="col-lg-5">
-          <div class="info d-flex align-items-center">
-            <div class="content">
-              <div class="logo">
-                <h1>UETGram</h1>
-              </div>
-              <p>Chia sẻ ảnh của bạn với mọi người!</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-7" id="slide">
-          <div id="carouselWelcome" style="width:100%" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-              <li data-target="#carouselWelcome" data-slide-to="0" class="active"></li>
-              <li data-target="#carouselWelcome" data-slide-to="1"></li>
-              <li data-target="#carouselWelcome" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-              <div class="carousel-item active">
-                <div class="info d-flex align-items-center col-lg-12" style="background-image:url('/img/slide1.png')">
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                  <h1>Cấu trúc</h1>
-                  <p>Quản lý ảnh theo thư mục</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="info d-flex align-items-center col-lg-12" style="background-image:url('/img/slide2.png')">
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                  <h1>Giao diện</h1>
-                  <p>Thân thiện &amp; dễ sử dụng</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <div class="info d-flex align-items-center col-lg-12" style="background-image:url('/img/slide3.png')">
-                </div>
-                <div class="carousel-caption d-none d-md-block">
-                  <h1>Chức năng</h1>
-                  <p>Hỗ trợ xem trước và tải lên nhiều ảnh cùng lúc</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
+<header class="page-header up">
+  <div id="row row-flex">
+    <div class="col-sm-12">
+      <strong><label style="font-size: 125%">Ảnh đăng gần đây nhất</label></strong>
     </div>
   </div>
-</div>
+</header>
+<section class="forms up">
+  <div class="container" id="container" style="min-height: 400px">  
+    <div class="row row-flex">    
+      @foreach ($images as $image)
+          <div class="col-lg-4 col-md-6 sb-preview text-center">
+            <div class="card h-100">
+              <a href="#">
+                <img class="card-img-top" src="{{ URL::to('/storage/upload/' . $image->img) }}"/>
+              </a>
+              <div class="card-footer">
+                @if($image->title != '')
+                  <h2>Tiêu đề: {{$image->title}}</h2>
+                @endif
+              </div>
+            </div>
+          </div>
+      @endforeach
+    </div>
+  </div>
+</section>
