@@ -25,11 +25,19 @@
   </div>
 </header>
 @stop
+
 @section('content')
 <section class="forms up">
   <div class="container" id="container" style="min-height: 400px">
-    <table class="table table-striped" style="padding-top: 20px">
-      <thead>
+  <div class="col-sm-12" id="manage">
+  <h2>Thống kê</h2>
+  <p>Tổng số tài khoản: {{ $users->total() }}</p>
+  <p>Quản trị viên: {{ $admin }}</p>
+  <p>Người dùng thường: {{ $normal }}</p>
+  <p>Tài khoản bị khóa: {{ $banned }}</p>
+  </div>
+    <table class="table table-striped" style="padding-top: 20px; margin-top: 10px">
+      <thead class="thead-inverse">
         <tr>
           <th>Tên</th>
           <th>Email</th>

@@ -14,7 +14,21 @@ class AdminController extends Controller
 {
   public function index() {
     $users = User::paginate(15);
-    return view('admin.index',compact('users'));  
+    $admin = 0;
+    $normal = 0;
+    $banned = 0;
+    foreach($users as $u) {
+      if($u->lv == 1) {
+        $admin++;
+      }
+      else if($u->lv == 0) {
+        $normal++;
+      }
+      else if($u->lv == -1) {
+        $banned++;
+      }
+    }
+    return view('admin.index',compact('users','admin','normal','banned'));  
   }
 
   public function update($idUser,$lv, Request $request) {
@@ -27,16 +41,4 @@ class AdminController extends Controller
     );
     return back()->with($notificationMsg);
   }
-
-  public function openAcount($idUser, Request $request) {
-    $user = User::find($idUser);
-    $user->lv = 0;
-    $user->save();
-    $notificationMsg = array(
-      "message" => "Tài khoản đã mở khóa!",
-      "alert-type" => "success"
-    );
-    return back()->with($notificationMsg);
-  }
-
 }
