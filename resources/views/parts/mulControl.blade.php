@@ -1,4 +1,4 @@
-@if(!Auth::guest() && $images && $images->total()>0)
+@if(!Auth::guest() && $images && $images->total()>0 && Auth::user()->lv >= 0 && $valid)
 @if(Auth::user()->lv==1)
 <button class="btn btn-sm btn-danger inline pull-right" disabled id="delete-mul-bt" data-toggle="modal" data-target="#deleteMulModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
 @endif

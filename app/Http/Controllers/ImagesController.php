@@ -15,13 +15,24 @@ class ImagesController extends Controller
 {
     public function index() {
         $images = Image::paginate(18);
-        return view('image.index',compact('images'));        
+        $valid = false;
+        foreach($images as $i) {
+            if($i->user->lv >= 0) {
+                $valid = true;
+                break;
+            }
+        }
+        return view('image.index',compact('images','valid'));        
     }
 
     public function userimg($user) {
         $user = User::where('name', '=', $user)->first();
         $images = $user->images()->paginate(18);
-        return view('image.user',compact('images','user'));        
+        $valid = false;
+        if($user->lv >= 0) {
+            $valid = true;
+        }
+        return view('image.user',compact('images','user','valid'));        
     }
 
     public function addimg($idAlbum,Request $request){

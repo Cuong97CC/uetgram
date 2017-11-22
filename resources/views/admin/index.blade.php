@@ -33,7 +33,7 @@
         <tr>
           <th>Tên</th>
           <th>Email</th>
-          <th>Số ảnh</th>
+          <th>Ảnh</th>
           <th>Trạng thái</th>
           <th>Hành động</th>
         </tr>
@@ -43,7 +43,7 @@
             <tr>
               <td>{{ $user->name }}</td>
               <td>{{ $user->email }}</td>
-              <td>{{ $user->images->count() }}</td>
+              <td><a href="{{ route('image.userimg',[$user->name]) }}">{{ $user->images->count() }}</a></td>
               @if ($user->lv == 0)
               <td>Người dùng thường</td>
               @elseif ($user->lv > 0)
@@ -57,10 +57,10 @@
                   @if ($user->lv != -1)
                   <form method="POST" class="form-group inline" action="{{ route('admin.update',[$user->id,1]) }}">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn btn-info btn-sm inline">Admin</button>
+                    <button type="submit" class="btn btn-info btn-sm inline">Quản trị</button>
                   </form>
                   @else
-                  <button class="btn btn-info btn-sm inline disabled">Admin</button>
+                  <button class="btn btn-info btn-sm inline disabled">Quản trị</button>
                   @endif
                   @if ($user->lv != -1)
                   <form method="POST" class="form-group inline" action="{{ route('admin.update',[$user->id,-1]) }}">

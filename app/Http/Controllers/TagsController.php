@@ -47,10 +47,17 @@ class TagsController extends Controller
     public function findimages($content) {
         $tag = Tag::where('content', '=', $content)->first();
         $images = null;
+        $valid = false;
         if($tag) {
             $images = $tag->images()->paginate(18);
+            foreach($images as $i) {
+                if($i->user->lv >= 0) {
+                    $valid = true;
+                    break;
+                }
+            }
         }
-        return view('image.tag',compact('images','content'));        
+        return view('image.tag',compact('images','content','valid'));        
     }
 
     public function destroy($idImg,$idTag,Request $request) {

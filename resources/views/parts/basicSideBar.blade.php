@@ -2,7 +2,7 @@
 @if(!Auth::guest() && Auth::user()->lv > 0 )
   <li>
     <a href="{{ route('admin.index') }}">
-      <i class="fa fa-book" aria-hidden="true"></i>Danh sách người dùng
+    <i class="fa fa-users" aria-hidden="true"></i>Quản lý người dùng
     </a>
   </li>
 @endif

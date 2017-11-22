@@ -1,5 +1,12 @@
 <div class="col-sm-2">
-    @if(Auth::guest())
+    @if($i->user->lv == -1)
+    <a href="#" data-trigger="focus" data-placement="bottom" data-toggle="popover" title="Ảnh nhỏ" data-content="Tài khoản sở hữu ảnh đang bị khóa!">
+        <img id="img{{$i->id}}" class="small-img" src=""/>
+        <script>
+            getSrc('{{$i->id}}','{{$i->img}}');
+        </script>
+    </a>
+    @elseif(Auth::guest())
     <a href="#" data-trigger="focus" data-placement="bottom" data-toggle="popover" title="Ảnh nhỏ" data-content="Đăng nhập để xem kích thước đầy đủ!">
         <img id="img{{$i->id}}" class="small-img" src=""/>
         <script>

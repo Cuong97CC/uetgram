@@ -74,7 +74,14 @@ class AlbumsController extends Controller
         $album = Album::find($idAlbum);
         $subAlbums = $album->albums()->paginate(8);
         $images = $album->images()->paginate(18);
-        return view('album.show',compact(['album','subAlbums','images']));    
+        $valid = false;
+        foreach($images as $i) {
+            if($i->user->lv >= 0) {
+                $valid = true;
+                break;
+            }
+        }
+        return view('album.show',compact(['album','subAlbums','images','valid']));    
     }
 
     public function destroy($idAlbum,Request $request) {
