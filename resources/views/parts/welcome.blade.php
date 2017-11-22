@@ -1,7 +1,7 @@
 <header class="page-header up">
   <div id="row row-flex">
     <div class="col-sm-12">
-      <strong><label style="font-size: 125%">Ảnh đăng gần đây nhất</label></strong>
+      <strong><label style="font-size: 125%">Ảnh được đăng gần đây</label></strong>
     </div>
   </div>
 </header>
