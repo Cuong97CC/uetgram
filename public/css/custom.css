@@ -370,4 +370,8 @@ table button {
     background: transparent;
 }
 
+#user-table thead tr th {
+  border: 1px solid #FFF;
+}
+
 

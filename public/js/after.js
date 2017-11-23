@@ -389,7 +389,10 @@ function deleteCmt(id) {
     },
     success: function (data) {
       if (data) {
-        $("#comment" + data).remove();
+        $("#comment" + data).slideUp();
+        setTimeout(function() {
+          $("#comment" + data).remove();
+        }, 2000);
       }
     }
   });

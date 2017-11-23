@@ -36,7 +36,7 @@
   <p>Người dùng thường: {{ $normal }}</p>
   <p>Tài khoản bị khóa: {{ $banned }}</p>
   </div>
-    <table class="table table-striped" style="padding-top: 20px; margin-top: 10px">
+    <table class="table table-striped" style="padding-top: 20px; margin-top: 10px" id="user-table">
       <thead class="thead-inverse">
         <tr>
           <th>Tên</th>
