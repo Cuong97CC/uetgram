@@ -121,9 +121,6 @@
                 @else
                 <div class="row">
                     <div class="col-sm-12">
-                    @if(!Auth::guest() && Auth::user()->lv==1 && $images->total()>0)
-                    <button class="btn btn-sm btn-danger inline pull-right" disabled id="delete-mul-bt" data-toggle="modal" data-target="#deleteMulModal"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                    @endif
                     @include('parts.mulControl')
                     </div>
                 </div>

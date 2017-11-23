@@ -7,7 +7,10 @@
 </header>
 <section class="forms up">
   <div class="container" id="container" style="min-height: 400px">  
-    <div class="row row-flex">    
+    <div class="row row-flex"> 
+      @if($images->count() == 0)
+      <p style="padding-left: 10px">Không có gì để hiển thị!</p>
+      @else   
       @foreach ($images as $k=>$i)
           <div class="col-lg-4 col-md-6 sb-preview text-center">
             <div class="card h-100">
@@ -25,6 +28,7 @@
             </div>
           </div>
       @endforeach
+      @endif
     </div>
   </div>
 </section>
