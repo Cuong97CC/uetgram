@@ -19,7 +19,8 @@
       </div>
       <div class="carousel-inner" role="listbox">
         @foreach($images as $i)
-        <div class="carousel-item">
+        @if($i->mode == 0 || $i->user->id == Auth::user()->id || Auth::user()->lv == 1 || $i->sharedTo(Auth::user()->id))
+        <div class="carousel-item" id="carousel-item{{$i->id}}">
           <div class="row" id="detail">
             <div class="col-md-8">
               <img style="width: 100%; height: 100%" src="{{ URL::to('/storage/upload/' . $i->img) }}" alt="{{$i->title}}">
@@ -60,11 +61,43 @@
               @endif
               @endif
               </div>
-              <p>Đăng bởi:
+              <p style="display:inline">Đăng bởi:
                 <strong>
                   <a href="{{ route('image.userimg',[$i->user->name]) }}">{{$i->user->name}}</a>
                 </strong>
-              </p>
+              </p></br>
+              @if($i->mode == 0)
+              <p id="mode{{$i->id}}" style="display: inline; margin-right: 10px">Chế độ: Công khai</p>
+              @if($i->user->id == Auth::user()->id)
+              <a href="javascript:void(0)" onClick="changeMode({{$i->id}})"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+              @endif
+              @else
+              <p id="mode{{$i->id}}" style="display: inline; margin-right: 10px">Chế độ: Riêng tư</p>
+              @if($i->user->id == Auth::user()->id)
+              <a href="javascript:void(0)" onClick="changeMode({{$i->id}})"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+              @endif
+              @endif
+              <div id="sharedUser{{$i->id}}">
+              @if($i->mode == 1)
+                @if($i->shareWith->count() == 0)
+                <p class="inline">Được chia sẻ với: -</p> <p class="inline" id="share{{$i->id}}">Chỉ mình tôi -</p>
+                @else
+                <p class="inline">Được chia sẻ với: - </p>
+                <p class="inline" id="share{{$i->id}}">
+                  @foreach($i->shareWith as $u)
+                  <a href="{{ route('image.userimg',[$u->name]) }}" style="margin-right: 3px">{{$u->name}}</a>
+                  @if($i->user->id == Auth::user()->id)
+                  <a href="javascript:void(0)" onClick="removeShare({{$i->id}},{{$u->id}})" style="color: red"><i class="fa fa-window-close" aria-hidden="true"></i></a>
+                  @endif
+                   -
+                  @endforeach
+                </p>
+                @endif
+                @if($i->user->id == Auth::user()->id)
+                <a class="share-bt" href="#" data-toggle="modal" data-target="#shareModal{{$i->id}}"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>
+                @endif
+              @endif
+              </div>
               <p>Ngày đăng:&nbsp;{{$i->created_at->format('d-m-Y H:i')}}</p>
               <div id="tag-area{{$i->id}}" style="margin-bottom: 5px">
               @foreach($i->tags as $t)
@@ -113,8 +146,12 @@
             </div>
           </div>
         </div>
+        @endif
         @endforeach
         @foreach($images as $i)
+          @if($i->user->id == Auth::user()->id)
+            @include('modals.shareModal')
+          @endif
           @include('modals.deleteSingleModal')
         @endforeach
       </div>

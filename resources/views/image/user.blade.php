@@ -32,7 +32,7 @@
 		<p>Không có gì để hiển thị!</p>
 	  @else
 		<div class="row">
-		@foreach($images as $k=>$i)
+		@foreach($images as $i)
 			@include('parts.image')
 		@endforeach
 		</div>

@@ -22,6 +22,11 @@ Route::get('/search/{content}',[
     'uses' => 'AppController@search'
 ]);
 
+Route::get('/users',[
+    'as'  => 'user.search',
+    'uses' => 'AppController@searchUser'
+]);
+
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'], function() {
     Route::get('/', [
         'as' => 'admin.index',
@@ -119,6 +124,24 @@ Route::group(['prefix'=>'images'], function(){
         'middleware'=>'userLogin',
         'as'  => 'image.empty',
         'uses'=> 'ImagesController@empty'
+    ]);
+
+    Route::post('{idImg}/{idUsers}', [
+        'middleware'=>'userLogin',
+        'as'  => 'image.share',
+        'uses'=> 'ImagesController@share'
+    ]);
+
+    Route::post('changemode', [
+        'middleware'=>'userLogin',
+        'as'  => 'image.changemode',
+        'uses'=> 'ImagesController@changeMode'
+    ]);
+
+    Route::post('removeShare', [
+        'middleware'=>'userLogin',
+        'as'  => 'image.removeshare',
+        'uses'=> 'ImagesController@removeShare'
     ]);
 
     Route::group(['prefix'=>'tags','middleware'=>'userLogin'], function(){

@@ -24,4 +24,12 @@ class AppController extends Controller
         $tags = Tag::where('content','LIKE','%'.$content.'%')->paginate(48);
         return view('search',compact(['albums','users','images','tags','content','valid']));
     }
+
+    public function searchUser(Request $request) {
+        if($request->ajax()) {
+            $name = $request->name;
+            $users = User::where('name','LIKE',$name.'%')->limit(10)->get();
+            return $users->toJson();
+        }
+    }
 }

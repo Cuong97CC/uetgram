@@ -10,6 +10,7 @@ use App\Album;
 use App\Image;
 use App\Comment;
 use App\User;
+use App\Image_User;
 
 class ImagesController extends Controller
 {
@@ -42,6 +43,7 @@ class ImagesController extends Controller
         if($files = $request->file('file')){
             $title = Input::get('title');
             $content = Input::get('content');
+            $mode = Input::get('mode');
             $idUser = Auth::user()->id;
             if(!is_dir("storage/upload/".date("Y"))) {
                 mkdir("storage/upload/".date("Y"));
@@ -63,7 +65,8 @@ class ImagesController extends Controller
                     'img' => $img,
                     'idAlbum' => $idAlbum,
                     'title' => $title,
-                    'content' => $content
+                    'content' => $content,
+                    'mode' => $mode
                 ]);
             }
             $notificationMsg = array(
@@ -145,6 +148,57 @@ class ImagesController extends Controller
                 "alert-type" => "warning"
             );
             return back()->with($notificationMsg); 
+        }
+    }
+
+    public function share($id,$ids,Request $request) {
+        if($request->ajax()) {
+            $idUsers = $request->ids;
+            $idImg = $request->id;
+            foreach(explode(',', $idUsers) as $u) {
+                if(!Image_User::where('idImg','=',$idImg)->where('idUser','=',$u)->first()) {
+                    Image_User::create([
+                        'idImg' => $idImg,
+                        'idUser' => $u
+                    ]);
+                }
+            }
+            $image = Image::find($idImg);
+            $users = $image->shareWith;
+            return $users->toJson();
+        }
+    }
+
+    public function changeMode(Request $request) {
+        if($request->ajax()) {
+            $idImg = $request->id;
+            $image = Image::find($idImg);
+            if($image->mode == 0) {
+                $image->mode = 1;
+                $image->save();
+            }
+            else {
+                foreach($image->image_user as $iu) {
+                    $iu->delete();
+                }
+                $image->mode = 0;
+                $image->save();
+            }
+            return $image->mode;
+        }
+    }
+
+    public function removeShare(Request $request) {
+        if($request->ajax()) {
+            $idImg = $request->idImg;
+            $idUser = $request->idUser;
+            $iu = Image_User::where('idImg','=',$idImg)->where('idUser','=',$idUser)->first();
+            if($iu) {
+                $iu->delete();
+            }
+            $image = Image::find($idImg);
+            $users = $image->shareWith;
+            return $users->toJson();
         }
     }
 }

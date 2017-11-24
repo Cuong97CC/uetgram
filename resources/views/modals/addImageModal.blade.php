@@ -15,6 +15,13 @@
 					<div id="image"></div>
 					</br>
 					<div class="form-group">
+						<label class="form-label" for="mode">Chế độ:</label>
+						<select class="form-control-sm" name="mode" style="font-family: 'FontAwesome', Helvetica;">
+							<option value="0">&#xf0ac; Công khai</option>
+							<option value="1">&#xf023; Riêng tư</option>
+						</select>
+					</div>
+					<div class="form-group">
 						<label class="form-label" for="title">Tiêu đề:</label>
 						<input class="form-control" type="text" placeholder="Tiêu đề" name="title">
 					</div>

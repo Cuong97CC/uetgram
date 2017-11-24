@@ -55,7 +55,7 @@ toastr.options = {
   "hideEasing": "linear",
   "showMethod": "fadeIn",
   "hideMethod": "slideUp"
-  }
+}
 
 $('#searchForm').on('keyup keypress', function (e) {
   var keyCode = e.keyCode || e.which;
@@ -155,14 +155,14 @@ $('#searchResult').on('hidden.bs.collapse', function () {
   localStorage.removeItem('id');
 });
 
-function clickImg(index) {
+function clickImg(id) {
   $("header.up").slideUp();
   $("section.up").slideUp();
   if ($('#toggle-btn').hasClass('active')) {
     $("#toggle-btn").click();
   }
   $("#image-detail").fadeIn();
-  $('#image-detail').find('.carousel-item:nth-child(' + index + ')').addClass('active');
+  $('#carousel-item' + id).addClass('active');
 }
 
 function hide() {
@@ -390,7 +390,7 @@ function deleteCmt(id) {
     success: function (data) {
       if (data) {
         $("#comment" + data).slideUp();
-        setTimeout(function() {
+        setTimeout(function () {
           $("#comment" + data).remove();
         }, 2000);
       }
@@ -411,7 +411,7 @@ function addTag(id) {
   $("#input" + id).on('keyup', function (e) {
     var content = $("#input" + id).val();
     if (e.keyCode == 13 && content.trim() != '') {
-      if(content.trim().length < 20) {
+      if (content.trim().length < 20) {
         var _token = $('meta[name="csrf-token"]').attr('content');
         $.ajax({
           url: "/images/tags/" + id + "/addtag",
@@ -436,8 +436,7 @@ function addTag(id) {
             }
           }
         });
-      }
-      else {
+      } else {
         toastr.warning("Nhãn không được chứa quá 20 ký tự!");
       }
     }
@@ -466,9 +465,147 @@ function deleteTag(idImg, idTag) {
   });
 }
 
+var checked = [];
+var ids = "";
+
+function searchUser(id) {
+  var name = $("#search" + id).val();
+  var _token = $('meta[name="csrf-token"]').attr('content');
+  $.ajax({
+    url: "/users",
+    type: "GET",
+    cache: false,
+    data: {
+      "_token": _token,
+      "name": name,
+    },
+    success: function (data) {
+      if (data) {
+        var json = JSON.parse(data);
+        $("#list" + id).empty();
+        for (var i = 0; i < json.length; i++) {
+          var html = `<div class="col-sm-6">
+          <label class="custom-control custom-checkbox inline list" id="box` + id + `" style="display:inline-block; vertical-align:middle; margin-top: 7px">
+              <input type="checkbox" class="custom-control-input" id="` + json[i]['id'] + `" value="` + json[i]['id'] + `">
+              <span class="custom-control-indicator"></span>
+          </label>
+          <p class="inline">` + json[i]['name'] + `</p></div>`;
+          $("#list" + id).append(html);
+        }
+        $(".list input:checkbox").change(function () {
+          if ($("input:checked").length > 0) {
+            document.getElementById('shareto' + id).disabled = false;
+            checked = [];
+            for (var i = 0; i < $("input:checked").length; i++) {
+              checked[i] = $("input:checked")[i].id;
+            }
+            ids = checked[0];
+            for (var i = 1; i < checked.length; i++) {
+              ids += "," + checked[i];
+            }
+          } else {
+            document.getElementById('shareto' + id).disabled = true;
+          }
+        });
+      }
+    }
+  });
+}
+
+function share(id) {
+  var _token = $('meta[name="csrf-token"]').attr('content');
+  $.ajax({
+    url: "/images/" + id + "/" + ids,
+    type: "POST",
+    cache: false,
+    data: {
+      "_token": _token,
+      "id": id,
+      "ids": ids
+    },
+    success: function (res) {
+      if (res) {
+        $("#shareModal" + id).modal('hide');
+        var json = JSON.parse(res);
+        $("#share" + id).empty();
+        if (json.length > 0) {
+          for (var i = 0; i < json.length; i++) {
+            var html = `<a href="/images/user/` + json[i]['name'] + `" style="margin-right: 3px">` + json[i]['name'] + `</a>
+            <a href="javascript:void(0)" onClick="removeShare(` + id + `,` + json[i]['id'] + `)" style="color: red"><i class="fa fa-window-close" aria-hidden="true"></i></a> -`;
+            $("#share" + id).append(html);
+          }
+          toastr.success("Ảnh đã được chia sẻ thành công!");
+        }
+        else {
+          var html = `Chỉ mình tôi -`;
+          $("#share" + id).append(html);
+        }
+      }
+    }
+  });
+}
+
+function removeShare(id,idUser) {
+  var _token = $('meta[name="csrf-token"]').attr('content');
+  $.ajax({
+    url: "/images/removeShare",
+    type: "POST",
+    cache: false,
+    data: {
+      "_token": _token,
+      "idImg": id,
+      "idUser": idUser
+    },
+    success: function (res) {
+      if (res) {
+        var json = JSON.parse(res);
+        $("#share" + id).empty();
+        if (json.length > 0) {
+          for (var i = 0; i < json.length; i++) {
+            var html = `<a href="/images/user/` + json[i]['name'] + `" style="margin-right: 3px">` + json[i]['name'] + `</a>
+            <a href="javascript:void(0)" onClick="removeShare(` + id + `,` + json[i]['id'] + `)" style="color: red"><i class="fa fa-window-close" aria-hidden="true"></i></a> -`;
+            $("#share" + id).append(html);
+          }
+        }
+        else {
+          var html = `Chỉ mình tôi -`;
+          $("#share" + id).append(html);
+        }
+        toastr.success("Hủy chia sẻ thành công!");
+      }
+    }
+  });
+}
+
+function changeMode(id) {
+  var _token = $('meta[name="csrf-token"]').attr('content');
+  $.ajax({
+    url: "/images/changemode",
+    type: "POST",
+    cache: false,
+    data: {
+      "_token": _token,
+      "id": id,
+    },
+    success: function (data) {
+      if (data == 0) {
+        var html = "Chế độ: Công khai";
+        $("#mode" + id).html(html);
+        $("#sharedUser" + id).empty();
+      }
+      else if (data == 1) {
+        var html = "Chế độ: Riêng tư";
+        $("#mode" + id).html(html);
+        var html1 = `<p class="inline">Được chia sẻ với: -</p> <p class="inline" id="share` + id + `">Chỉ mình tôi -</p>
+        <a class="share-bt" href="#" data-toggle="modal" data-target="#shareModal` + id + `"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>`;
+        $("#sharedUser" + id).empty();
+        $("#sharedUser" + id).html(html1);
+      }
+    }
+  });
+}
+
 function downloadSingle(location) {
   $("#single-hidden-link").attr("href", location);
   document.getElementById("single-hidden-link").click();
 }
-
-

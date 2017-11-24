@@ -9,7 +9,7 @@ $("#checkAll").change(function () {
 });
 
 $("input:checkbox").change(function () {
-    if ($("input:checked").length>0) {
+    if ((!document.getElementById("checkAll").checked && $("input:checked").length>0) || (document.getElementById("checkAll").checked && $("input:checked").length>1)) {
         @if(!Auth::guest() && Auth::user()->lv==1)
         document.getElementById('delete-mul-bt').disabled = false;
         @endif

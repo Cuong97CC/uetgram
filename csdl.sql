@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 30, 2017 at 09:50 PM
+-- Generation Time: Nov 24, 2017 at 09:12 PM
 -- Server version: 5.7.20-0ubuntu0.16.04.1
 -- PHP Version: 7.0.22-0ubuntu0.16.04.1
 
@@ -35,6 +35,18 @@ CREATE TABLE `albums` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `albums`
+--
+
+INSERT INTO `albums` (`id`, `title`, `idUser`, `idAlbumf`, `created_at`, `updated_at`) VALUES
+(31, 'Cường đz', 3, 0, '2017-10-28 09:37:46', '2017-11-02 08:50:07'),
+(32, 'duong 14', 3, 0, '2017-10-28 09:40:08', '2017-11-21 08:25:56'),
+(34, '123', 4, 0, '2017-11-17 19:31:03', '2017-11-17 19:31:03'),
+(35, '145', 3, 32, '2017-11-21 04:50:41', '2017-11-21 04:50:41'),
+(36, '315', 5, 32, '2017-11-21 19:32:04', '2017-11-21 19:32:04'),
+(37, 'đz', 5, 0, '2017-11-21 21:09:32', '2017-11-21 21:09:32');
+
 -- --------------------------------------------------------
 
 --
@@ -63,9 +75,22 @@ CREATE TABLE `images` (
   `idAlbum` int(10) NOT NULL,
   `idUser` int(10) NOT NULL,
   `img` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mode` int(10) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images_users`
+--
+
+CREATE TABLE `images_users` (
+  `id` int(10) NOT NULL,
+  `idImg` int(10) NOT NULL,
+  `idUser` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -127,14 +152,25 @@ CREATE TABLE `tags_images` (
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(150) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
-  `email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(170) CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
+  `email` varchar(170) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `lv` int(11) NOT NULL DEFAULT '0',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `lv`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'Cường', 'admin_10@gmail.com', '$2y$10$Dj1IikoG3dAHrgWZkgIUPOC.m/otiAoAkVnTCJCJeJngbxbSDGKIy', 1, 'Tsprs4NNAWexHRxzHyphoQXZuzO4bCL0r1GYPDnBzlL3SmBDzqRpDZ2EeAag', '2017-10-24 20:27:20', '2017-10-24 20:27:20'),
+(4, 'Dương', 'doctor_10@gmail.com', '$2y$10$MbVK2nIiwVYwT.8TuAu.A.kRtPu8lWd2tl0lmGk7dq1iB2EH0MV9K', 0, 'zXACAQwmz8VgaS7mOkM3eovbuXtfWEkWeHiDcZjHigBpr8Ck0S2iEt9S2xZT', '2017-10-24 20:33:11', '2017-11-22 10:04:10'),
+(5, 'Cuong', 'osi19972@gmail.com', '$2y$10$.m1KTmIlZDkc.K5slzz/GOxBP3Qc2Mv7.CfRvxLR3RQprsIhEPsTG', -1, '4Z6dDrXvVNRy6247F3E74l1w2nMSLgTzJvRiPyeLNMiPpL6c5vkqyPCPglON', '2017-10-28 09:48:22', '2017-11-23 09:49:36'),
+(6, 'Cường Lê   Ngọc', 'osident1997@gmail.com', '$2y$10$Uzs990SyEv1OjNYNQ20luu0Fyrys0.wpvAY4mz/K1aKzQ4kvvlMK.', 0, 'h5pVOnA2lHrbJ85zqpNRpQYNMmV1jk3DZKWmm8zKCruD8u5rY79jRUDzC6yj', '2017-10-29 02:55:37', '2017-11-22 03:47:33'),
+(7, 'Hằng', 'nameless2972@gmail.com', '$2y$10$4utCq65gPrDe54FJUPqVjuz..WicBtCiUcWVPHFwwrUy5Q5ZWQq3O', 0, 'zhhZbjhLNf2cKh6p8v8MwgD8ibD2DGhE8Tu8NA2oDUZ5y85o9r4kSVFJN5vp', '2017-11-22 01:03:06', '2017-11-22 03:47:34');
 
 --
 -- Indexes for dumped tables
@@ -156,6 +192,12 @@ ALTER TABLE `comments`
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `images_users`
+--
+ALTER TABLE `images_users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -199,17 +241,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `albums`
 --
 ALTER TABLE `albums`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+--
+-- AUTO_INCREMENT for table `images_users`
+--
+ALTER TABLE `images_users`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `migrations`
 --
@@ -219,17 +266,17 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tags_images`
 --
 ALTER TABLE `tags_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

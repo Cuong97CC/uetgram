@@ -1,3 +1,4 @@
+@if($i->mode == 0 || (!Auth::guest() && ($i->user->id == Auth::user()->id || Auth::user()->lv == 1 || $i->sharedTo(Auth::user()->id))))
 <div class="col-sm-2">
     @if($i->user->lv == -1)
     <a href="#" data-trigger="focus" data-placement="bottom" data-toggle="popover" title="Ảnh nhỏ" data-content="Tài khoản sở hữu ảnh đang bị khóa!">
@@ -19,7 +20,7 @@
         <input type="checkbox" class="custom-control-input" data-idImg="{{$i->id}}" id="{{$i->id}}" value="{{$i->img}}">
         <span class="custom-control-indicator"></span>
     </label>
-    <a id="link{{$i->id}}" href="javascript:void(0)" onClick="clickImg({{$k+1}})">
+    <a id="link{{$i->id}}" href="javascript:void(0)" onClick="clickImg({{$i->id}})">
         <img id="img{{$i->id}}" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
     </a>
     </div>
@@ -32,3 +33,4 @@
     </a>
     @endif
 </div>
+@endif

@@ -11,10 +11,10 @@
       @if($images->count() == 0)
       <p style="padding-left: 10px">Không có gì để hiển thị!</p>
       @else   
-      @foreach ($images as $k=>$i)
+      @foreach ($images as $i)
           <div class="col-lg-4 col-md-6 sb-preview text-center">
             <div class="card h-100">
-              <a href="javascript:void(0)" onClick="clickImg({{$k+1}})">
+              <a href="javascript:void(0)" onClick="clickImg({{$i->id}})">
                 <img class="card-img-top" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
               </a>
               <div class="card-footer">

@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use File;
+use App\User;
 
 class Image extends Model
 {
     protected $table = "images";
     
     protected $fillable = [
-        'title','content','idAlbum','img','idUser'
+        'title','content','idAlbum','img','idUser','mode'
     ];
 
     public function album(){
@@ -29,8 +30,16 @@ class Image extends Model
         return $this->hasMany('App\Tag_Image','idImg','id');
     }
 
+    public function image_user(){
+        return $this->hasMany('App\Image_User','idImg','id');
+    }
+
     public function tags(){
         return $this->belongsToMany('App\Tag', 'tags_images', 'idImg', 'idTag');
+    }
+
+    public function shareWith(){
+        return $this->belongsToMany('App\User', 'images_users', 'idImg', 'idUser');
     }
 
     public function destroyI(){
@@ -42,7 +51,20 @@ class Image extends Model
         foreach($tags as $t){
             $t->destroyTI();
         }
+        $image_user = $this->image_user;
+        foreach($image_user as $iu){
+            $iu->delete();
+        }
         File::delete('storage/upload/'.$this->img);
         $this->delete();
+    }
+
+    public function sharedTo($idUser) {
+        foreach($this->shareWith as $u) {
+            if($u->id == $idUser) {
+                return true;
+            }
+        }
+        return false;
     }
 }

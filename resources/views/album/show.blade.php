@@ -63,7 +63,7 @@
 			</div>
 		@elseif($images->total()>0)
 			<div class="row">
-			@foreach($images as $k=>$i)
+			@foreach($images as $i)
 				@include('parts.image')
 			@endforeach
 			</div>
