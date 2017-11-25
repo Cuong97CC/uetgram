@@ -236,6 +236,7 @@ function makeDescription(idCmt, idImg) {
           <a href="javascript:void(0)" onClick="editDescription(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
           <a href="javascript:void(0)" onClick="deleteDescription(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a>`;
         $("#content" + idImg).append(newContent);
+        toastr.success("Chọn bình luận làm mô tả thành công!");
       }
     }
   });
@@ -276,6 +277,7 @@ function editTitle(idImg) {
             <h1 class="inline"><a href="javascript:void(0)" onClick="editTitle(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a></h1>
             <h1 class="inline"><a href="javascript:void(0)" onClick="deleteTitle(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a></h1>`;
             $("#title" + idImg).append(newTitle);
+            toastr.info("Sửa tiêu đề thành công!");
           }
         }
       });
@@ -303,6 +305,7 @@ function deleteTitle(idImg) {
         $("#title" + idImg).empty();
         var newTitle = `<a href="javascript:void(0)" onClick="editTitle(` + idImg + `)" class="btn btn-info btn-sm">Thêm tiêu đề</a>`;
         $("#title" + idImg).append(newTitle);
+        toastr.success("Đã bỏ tiêu đề!");
       }
     }
   });
@@ -324,6 +327,7 @@ function deleteDescription(idImg) {
         $("#content" + idImg).empty();
         var newDescription = `<a href="javascript:void(0)" onClick="editDescription(` + idImg + `)" class="btn btn-info btn-sm">Thêm mô tả</a>`;
         $("#content" + idImg).append(newDescription);
+        toastr.success("Đã bỏ mô tả!");
       }
     }
   });
@@ -366,6 +370,7 @@ function editDescription(idImg) {
               <a href="javascript:void(0)" onClick="editDescription(` + idImg + `)"><i class="fa fa-pencil" aria-hidden="true"></i></a>
               <a href="javascript:void(0)" onClick="deleteDescription(` + idImg + `)" class="del"><i class="fa fa-times" aria-hidden="true"></i></a>`;
             $("#content" + idImg).append(newContent);
+            toastr.info("Sửa mô tả thành công!");
           }
         }
       });
@@ -393,6 +398,7 @@ function deleteCmt(id) {
         setTimeout(function () {
           $("#comment" + data).remove();
         }, 2000);
+        toastr.success("Đã xóa một bình luận!");
       }
     }
   });
@@ -433,6 +439,7 @@ function addTag(id) {
                           </div>`;
               $("#tag-area" + id).append(tag);
               $("#add-tag-area" + id).empty();
+              toastr.success("Đã gán nhãn cho ảnh!");
             }
           }
         });
@@ -460,6 +467,7 @@ function deleteTag(idImg, idTag) {
     success: function (data) {
       if (data == "OK") {
         $("#tag" + idTag).remove();
+        toastr.success("Đã bỏ một nhãn!");
       }
     }
   });
@@ -592,6 +600,7 @@ function changeMode(id) {
         var html = "Chế độ: Công khai";
         $("#mode" + id).html(html);
         $("#sharedUser" + id).empty();
+        toastr.success("Ảnh đã đổi thành chế độ công khai!");
       }
       else if (data == 1) {
         var html = "Chế độ: Riêng tư";
@@ -600,6 +609,7 @@ function changeMode(id) {
         <a class="share-bt" href="#" data-toggle="modal" data-target="#shareModal` + id + `"><i class="fa fa-share-alt-square" aria-hidden="true"></i></a>`;
         $("#sharedUser" + id).empty();
         $("#sharedUser" + id).html(html1);
+        toastr.success("Ảnh đã đổi thành chế độ riêng tư!");
       }
     }
   });
