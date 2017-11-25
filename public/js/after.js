@@ -204,8 +204,8 @@ function comment(id, name, lv) {
           } else {
             var html = `<div class="comment" id="comment` + data + `">
                             <p class="inline"><strong><a href="/images/user/` + name + `">` + name + `</a></strong> : ` + content + `</p></br>
-                            <button onClick="deleteCmt(` + data + `)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                            <button onClick="makeDescription(` + data + `,` + id + `)" class="btn btn-sm btn-info"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
+                            <button title="Xóa bình luận" onClick="deleteCmt(` + data + `)" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                            <button title="Chọn bình luận làm mô tả cho ảnh" onClick="makeDescription(` + data + `,` + id + `)" class="btn btn-sm btn-info"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>
                             </div>`;
           }
           $("#comment-area" + id).append(html);
