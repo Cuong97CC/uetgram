@@ -45,10 +45,16 @@ class ImagesController extends Controller
             $content = Input::get('content');
             $mode = Input::get('mode');
             $idUser = Auth::user()->id;
-            if(!is_dir("storage/upload/".date("Y"))) {
-                mkdir("storage/upload/".date("Y"));
-                if(!is_dir("storage/upload/".date("Y")."/thang".date("m"))) {
-                    mkdir("storage/upload/".date("Y")."/thang".date("m"));
+            if(!is_dir("storage")) {
+                mkdir("storage");
+                if(!is_dir("storage/upload")) {
+                    mkdir("storage/upload");
+                    if(!is_dir("storage/upload/".date("Y"))) {
+                        mkdir("storage/upload/".date("Y"));
+                        if(!is_dir("storage/upload/".date("Y")."/thang".date("m"))) {
+                            mkdir("storage/upload/".date("Y")."/thang".date("m"));
+                        }
+                    }
                 }
             }
             foreach($files as $file){
