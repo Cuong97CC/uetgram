@@ -1,10 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
-
-class DatabaseSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,11 +11,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        //
+         User::create([
             'name' => 'Quản trị trang web',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456789'),
-            'lv' => 1,
+            'lv' => 1
         ]);
     }
 }
