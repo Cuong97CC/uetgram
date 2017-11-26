@@ -27,7 +27,7 @@ class AdminController extends Controller
         $banned++;
       }
     }
-    $users = User::paginate(15);
+    $users = User::orderBy('name')->paginate(15);
     return view('admin.index',compact('allUsers','users','admin','normal','banned'));  
   }
 
@@ -62,10 +62,10 @@ class AdminController extends Controller
       $email = Input::get('email-search');
       $lv = Input::get('type-filter');
       if($lv != 99) {
-        $users = User::where('name','LIKE','%'.$name.'%')->where('email','LIKE','%'.$email.'%')->where('lv','=',$lv)->paginate(15);
+        $users = User::where('name','LIKE','%'.$name.'%')->where('email','LIKE','%'.$email.'%')->where('lv','=',$lv)->orderBy('name')->paginate(15);
       }
       else {
-        $users = User::where('name','LIKE','%'.$name.'%')->where('email','LIKE','%'.$email.'%')->paginate(15);
+        $users = User::where('name','LIKE','%'.$name.'%')->where('email','LIKE','%'.$email.'%')->orderBy('name')->paginate(15);
       }
       return view('admin.index',compact('allUsers','users','admin','normal','banned'));
   }

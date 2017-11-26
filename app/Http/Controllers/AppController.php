@@ -28,7 +28,7 @@ class AppController extends Controller
     public function searchUser(Request $request) {
         if($request->ajax()) {
             $name = $request->name;
-            $users = User::where('name','LIKE',$name.'%')->limit(10)->get();
+            $users = User::where('name','LIKE','%'.$name.'%')->limit(10)->get();
             return $users->toJson();
         }
     }
