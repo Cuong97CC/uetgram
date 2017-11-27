@@ -47,18 +47,19 @@ class ImagesController extends Controller
             $idUser = Auth::user()->id;
             if(!is_dir("storage")) {
                 mkdir("storage");
-                if(!is_dir("storage/upload")) {
-                    mkdir("storage/upload");
-                    if(!is_dir("storage/upload/".date("Y"))) {
-                        mkdir("storage/upload/".date("Y"));
-                        if(!is_dir("storage/upload/".date("Y")."/thang".date("m"))) {
-                            mkdir("storage/upload/".date("Y")."/thang".date("m"));
-                        }
-                    }
-                }
+            }
+            if(!is_dir("storage/upload")) {
+                mkdir("storage/upload");
+            }
+            if(!is_dir("storage/upload/".date("Y"))) {
+                mkdir("storage/upload/".date("Y"));
+            }
+            if(!is_dir("storage/upload/".date("Y")."/thang".date("m"))) {
+                mkdir("storage/upload/".date("Y")."/thang".date("m"));
             }
             foreach($files as $file){
                 $name = $file->getClientOriginalName();
+                $name = str_replace(" ", "_", $name);
                 $fname = str_random(4)."_". $name;
                 $img = date("Y")."/thang".date("m")."/".$fname;
                 while(file_exists("storage/upload/".$img)){

@@ -619,3 +619,11 @@ function downloadSingle(location) {
   $("#single-hidden-link").attr("href", location);
   document.getElementById("single-hidden-link").click();
 }
+
+function lockedMouseOver(id) {
+  $("#del-bt" + id).fadeIn();
+}
+
+function lockedMouseOut(id) {
+  $("#del-bt" + id).fadeOut();
+}

@@ -38,4 +38,8 @@ class User extends Authenticatable
     public function albums() {
         return $this->hasMany('App\Album','idUser','id');
     }
+
+    public function private_images() {
+        return $this->belongsToMany('App\Image', 'images_users', 'idUser', 'idImg');
+    }
 }
