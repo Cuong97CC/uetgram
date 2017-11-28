@@ -5,7 +5,7 @@
         <button id="del-bt{{$i->id}}" class="btn btn-sm btn-danger top-right" data-toggle="modal" data-target="#deleteSingleModal{{$i->id}}" style="display:none"><i class="fa fa-trash" aria-hidden="true"></i></button>
         @include('modals.deleteSingleModal')
         <a href="javascript:void(0)" data-trigger="focus" data-placement="bottom" data-toggle="popover" title="Ảnh bị khóa" data-content="Tài khoản sở hữu ảnh đang bị khóa!" onmouseenter="lockedMouseOver({{$i->id}})" onmouseleave="lockedMouseOut({{$i->id}})">
-            <img id="img{{$i->id}}" class="small-img" src=""/>
+            <img id="img{{$i->id}}" class="small-img admin-locked-img" src=""/>
             <script>
                 getSrc('{{$i->id}}','{{$i->img}}');
             </script>
