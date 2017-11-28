@@ -398,8 +398,11 @@ table button {
 }
 
 .private-img {
-  border: 1px solid rgb(0, 204, 255);
-  border-radius: 15px;
+  border: 2px solid rgb(255, 0, 0);
+}
+
+.locked-img {
+  border: 2px solid rgb(0, 4, 255);
 }
 
 

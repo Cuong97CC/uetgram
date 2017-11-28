@@ -60,11 +60,16 @@ class Image extends Model
     }
 
     public function sharedTo($idUser) {
-        foreach($this->shareWith as $u) {
-            if($u->id == $idUser) {
-                return true;
-            }
+        if($this->mode == 0) {
+            return true;
         }
-        return false;
+        else {
+            foreach($this->shareWith as $u) {
+                if($u->id == $idUser) {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
