@@ -1,4 +1,4 @@
-@if(!Auth::guest() && $images && $images->total()>0)
+@if(!Auth::guest() && $images && $images->total()>0 && Auth::user()->lv != -1)
 <div id="image-detail" style="display:none; margin-bottom: 10px; min-height: 500px">
   <div class="container" id="container">
     <div id="carouselDetail" class="carousel slide" data-ride="carousel" data-interval="false">

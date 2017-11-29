@@ -14,9 +14,18 @@
       @foreach ($images as $i)
           <div class="col-lg-4 col-md-6 sb-preview text-center">
             <div class="card h-100">
+              @if(Auth::user()->lv != -1)
               <a href="javascript:void(0)" onClick="clickImg({{$i->id}})">
-                <img class="card-img-top" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
+                <img class="card-img-top small-img" src="{{ URL::to('/storage/upload/' . $i->img) }}"/>
               </a>
+              @else
+              <a href="javascript:void(0)" data-trigger="focus" data-placement="left" data-toggle="popover" title="Ảnh nhỏ" data-content="Tài khoản của bạn đang bị khóa!">
+                  <img id="img{{$i->id}}" class="small-img" src=""/>
+                  <script>
+                      getSrc('{{$i->id}}','{{$i->img}}');
+                  </script>
+              </a>
+              @endif
               <div class="card-footer">
               <p>Đăng bởi:
                 <strong>
