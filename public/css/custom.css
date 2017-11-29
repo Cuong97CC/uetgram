@@ -271,24 +271,24 @@ section.forms {
   margin-right: 5px;
 }
 
-#detail .col-md-4 {
+/*#detail .col-md-4 {
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 5px;
   background-color: #dfdfdf;
   border-radius: 4px;
-}
+}*/
 
 #detail .col-md-8 {
   margin-bottom: 5px;
 }
 
-.comment-area {
+/*.comment-area {
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #dfdfdf;
   border-radius: 4px;
-}
+}*/
 
 .comment {
   margin-bottom:3px;
@@ -408,6 +408,3 @@ table button {
 .admin-locked-img {
   border: 1px solid rgb(255, 0, 0);
 }
-
-
-
