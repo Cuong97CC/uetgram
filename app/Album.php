@@ -55,7 +55,7 @@ class Album extends Model
     public function destroyA()
     {
         foreach ($this->images as $i) {
-            if (Auth::user()->lv == 1) {
+            if (Auth::user()->lv == 1 || $this->user->id == Auth::user()->id) {
                 $i->destroyI();
             }
         }
