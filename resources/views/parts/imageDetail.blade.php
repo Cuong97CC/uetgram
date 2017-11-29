@@ -121,6 +121,7 @@
               <a id="single-hidden-link" download="" href="" style="display:none"></a>
             </div>
             <div class="col-md-12 comment-area" id="comment-area{{$i->id}}">
+              @if(Auth::user()->lv != -1)
               <div style="margin:5px" id="form-cmt{{$i->id}}">
                 <label class="form-label" for="content">Bình luận:</label>
                 <textarea class="form-control" row="3" placeholder="Nhập bình luận..." name="content" style="display:inline" required oninput="setCustomValidity('')" oninvalid="this.setCustomValidity('Trường này không được để trống')"></textarea>
@@ -130,6 +131,7 @@
                 <button onClick="comment({{$i->id}},'{{Auth::user()->name}}',0)" class="btn btn-primary" style="float:right">Đăng</button>
                 @endif
               </div></br></br>
+              @endif
               @foreach($i->comments as $c)
                   <div class="comment" id="comment{{$c->id}}">
                       <p class="inline"><strong><a href="{{ route('image.userimg',[$c->user->name]) }}">{{ $c->user->name }}</a></strong> : {{ $c->content }}</p></br>
