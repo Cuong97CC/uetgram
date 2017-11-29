@@ -4,12 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>@yield('title')</title>
-
+    <link rel="icon" type="image/x-icon" href="{{ URL::asset('img/logo.png') }}" />
     <!-- Styles -->
     <link rel="stylesheet" href="{{ URL::asset('libs/bootstrap-4.0.0-alpha.6/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('libs/font-awesome-4.7.0/css/font-awesome.min.css') }}">
