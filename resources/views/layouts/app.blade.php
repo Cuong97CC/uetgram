@@ -19,7 +19,7 @@
     <script src="{{ URL::asset('libs/bootstrap-4.0.0-alpha.6/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('js/before.js') }}"></script>
 </head>
-@if(Auth::guest())
+@if(Auth::guest() || Auth::user()->lv == -1)
 <body onContextMenu="return false">
 @else
 <body>
