@@ -31,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {   
-      $images = Image::where('mode','=',0)->orderBy('created_at','DESC')->paginate(9);
+      $images = Image::where('mode','=',0)->where('locked','=','0')->orderBy('created_at','DESC')->paginate(9);
       return view('home', compact('images'));
     }
 }

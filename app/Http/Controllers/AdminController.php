@@ -33,6 +33,18 @@ class AdminController extends Controller
 
   public function update($idUser,$lv, Request $request) {
     $user = User::find($idUser);
+    if($user->lv == -1 && $lv != -1) {
+      foreach($user->images as $i) {
+        $i->locked = 0;
+        $i->save();
+      }
+    }
+    else if($user->lv != -1 && $lv == -1) {
+      foreach($user->images as $i) {
+        $i->locked = 1;
+        $i->save();
+      }
+    }
     $user->lv = $lv;
     $user->save();
     $notificationMsg = array(

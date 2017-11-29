@@ -19,7 +19,7 @@
       </div>
       <div class="carousel-inner" role="listbox">
         @foreach($images as $i)
-        @if($i->mode == 0 || $i->user->id == Auth::user()->id || Auth::user()->lv == 1 || $i->sharedTo(Auth::user()->id))
+        @if($i->locked == 0 && ($i->mode == 0 || $i->user->id == Auth::user()->id || Auth::user()->lv == 1 || $i->sharedTo(Auth::user()->id)))
         <div class="carousel-item" id="carousel-item{{$i->id}}">
           <div class="row" id="detail">
             <div class="col-md-8">

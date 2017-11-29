@@ -11,6 +11,4 @@ class Image_User extends Model
     protected $fillable = [
         'idImg','idUser',
     ];
-
-    public $timestamps = false;
 }

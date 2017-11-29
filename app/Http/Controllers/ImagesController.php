@@ -20,8 +20,13 @@ class ImagesController extends Controller
         $valid = false;
         foreach($images as $i) {
             if($i->user->lv >= 0) {
-                $valid = true;
-                break;
+                if(!Auth::guest()) {
+                    $idUser = Auth::user()->id;
+                    if($i->sharedTo($idUser)) {
+                        $valid = true;
+                        break;
+                    }
+                }
             }
         }
         return view('image.index',compact('images','valid'));        
@@ -32,7 +37,15 @@ class ImagesController extends Controller
         $images = $user->images()->paginate(18);
         $valid = false;
         if($user->lv >= 0) {
-            $valid = true;
+            foreach($images as $i) {
+                if(!Auth::guest()) {
+                    $idUser = Auth::user()->id;
+                    if($i->sharedTo($idUser)) {
+                        $valid = true;
+                        break;
+                    }
+                }
+            }
         }
         return view('image.user',compact('images','user','valid'));        
     }

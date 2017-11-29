@@ -17,8 +17,13 @@ class AppController extends Controller
         $valid = false;
         foreach($images as $i) {
             if($i->user->lv >= 0) {
-                $valid = true;
-                break;
+                if(!Auth::guest()) {
+                    $idUser = Auth::user()->id;
+                    if($i->sharedTo($idUser)) {
+                        $valid = true;
+                        break;
+                    }
+                }
             }
         }
         $tags = Tag::where('content','LIKE','%'.$content.'%')->paginate(48);

@@ -21,6 +21,7 @@ class CreateImagesTable extends Migration
             $table->integer('idUser');
             $table->string('img');
             $table->integer('mode')->default(0);
+            $table->integer('locked')->default(0);
             $table->timestamps();
         });
     }

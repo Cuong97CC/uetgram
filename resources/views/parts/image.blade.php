@@ -1,6 +1,6 @@
 @if($i->mode == 0 || (!Auth::guest() && ($i->user->id == Auth::user()->id || Auth::user()->lv == 1 || $i->sharedTo(Auth::user()->id))))
 <div class="col-sm-2">
-    @if($i->user->lv == -1)
+    @if($i->locked == 1)
         @if(Auth::user()->lv == 1 || $i->user->id == Auth::user()->id)
         <button id="del-bt{{$i->id}}" class="btn btn-sm btn-danger top-right" data-toggle="modal" data-target="#deleteSingleModal{{$i->id}}" style="display:none"><i class="fa fa-trash" aria-hidden="true"></i></button>
         @include('modals.deleteSingleModal')
